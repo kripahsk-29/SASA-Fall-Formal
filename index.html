@@ -33,61 +33,6 @@
     margin: 1rem auto 0;
   }
 
-  /* ── toolbar (edit mode) ── */
-  .toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.8rem 1.5rem;
-    background: rgba(250,248,245,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    font-family: 'Cormorant Garamond', serif;
-  }
-
-  .toolbar.show { display: flex; }
-
-  .toolbar span {
-    font-size: 0.85rem;
-    color: #6b4f5a;
-    letter-spacing: 0.06em;
-  }
-
-  .toolbar button {
-    font-family: inherit;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.45rem 1.2rem;
-    border: 1px solid #c9a96e;
-    background: none;
-    color: #6b4f5a;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .toolbar button:hover {
-    background: #c9a96e;
-    color: #fff;
-  }
-
-  .toolbar button.done-btn {
-    background: #6b4f5a;
-    border-color: #6b4f5a;
-    color: #fff;
-  }
-
-  .toolbar button.done-btn:hover {
-    background: #8b6e7a;
-    border-color: #8b6e7a;
-  }
-
-  /* ── board ── */
   .board {
     max-width: 1400px;
     margin: 0 auto;
@@ -99,17 +44,6 @@
   @media (max-width: 1000px) { .board { columns: 3; } }
   @media (max-width: 640px)  { .board { columns: 2; column-gap: 8px; } }
 
-  /* when reordering, switch to flex grid so drag works properly */
-  .board.reorder-mode {
-    columns: unset;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-
-  @media (max-width: 1000px) { .board.reorder-mode { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 640px)  { .board.reorder-mode { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
-
   .board img {
     display: block;
     width: 100%;
@@ -117,42 +51,21 @@
     margin-bottom: 10px;
     border-radius: 3px;
     cursor: pointer;
-    transition: filter 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: filter 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
     filter: brightness(1.01) saturate(0.95);
   }
 
-  .board.reorder-mode img {
-    margin-bottom: 0;
-    cursor: grab;
-    object-fit: cover;
-    aspect-ratio: 3/4;
+  .board img.show {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .board.reorder-mode img:active { cursor: grabbing; }
 
   .board img:hover {
     filter: brightness(1.06) saturate(1.05);
   }
 
-  .board img.dragging {
-    opacity: 0.3;
-    transform: scale(0.95);
-  }
-
-  .board img.drag-over {
-    outline: 2px solid #c9a96e;
-    outline-offset: 3px;
-    border-radius: 3px;
-  }
-
-  /* fade-in on load */
-  .board img.loaded {
-    animation: fadeIn 0.4s ease forwards;
-  }
-
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-  /* ── lightbox ── */
   .lb {
     position: fixed; inset: 0; z-index: 100;
     background: rgba(30,25,27,0.88);
@@ -170,78 +83,6 @@
   }
   .lb.on img { transform: scale(1); }
 
-  /* ── export modal ── */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(30,25,27,0.7);
-    backdrop-filter: blur(8px);
-    display: none; align-items: center; justify-content: center;
-  }
-
-  .modal-overlay.show { display: flex; }
-
-  .modal {
-    background: #faf8f5;
-    border-radius: 6px;
-    padding: 2rem;
-    max-width: 600px;
-    width: 90vw;
-    max-height: 80vh;
-    overflow: auto;
-  }
-
-  .modal h3 {
-    font-weight: 400;
-    font-size: 1.2rem;
-    color: #6b4f5a;
-    margin-bottom: 0.5rem;
-  }
-
-  .modal p {
-    font-size: 0.8rem;
-    color: #999;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  .modal textarea {
-    width: 100%;
-    min-height: 200px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.72rem;
-    padding: 1rem;
-    border: 1px solid #e0dbd6;
-    border-radius: 4px;
-    background: #fff;
-    color: #333;
-    resize: vertical;
-  }
-
-  .modal-actions {
-    display: flex;
-    gap: 0.8rem;
-    margin-top: 1rem;
-    justify-content: flex-end;
-  }
-
-  .modal-actions button {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    padding: 0.5rem 1.2rem;
-    border: 1px solid #c9a96e;
-    background: none;
-    color: #6b4f5a;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .modal-actions button.primary {
-    background: #6b4f5a;
-    border-color: #6b4f5a;
-    color: #fff;
-  }
-
   footer {
     text-align: center;
     padding: 0 2rem 4rem;
@@ -251,38 +92,6 @@
     color: #b09a9e;
     letter-spacing: 0.08em;
   }
-
-  /* ── empty state ── */
-  .empty-state {
-    text-align: center;
-    padding: 6rem 2rem;
-    color: #b09a9e;
-  }
-
-  .empty-state p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .empty-state label {
-    display: inline-block;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.8rem;
-    border: 1px solid #c9a96e;
-    color: #6b4f5a;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .empty-state label:hover {
-    background: #c9a96e;
-    color: #fff;
-  }
-
-  #file-input { display: none; }
 </style>
 </head>
 <body>
@@ -291,12 +100,6 @@
   <h1>Pastels &amp; Pearls — SASA Formal</h1>
   <div class="line"></div>
 </header>
-
-<div class="toolbar" id="toolbar">
-  <span>Drag to reorder</span>
-  <button class="done-btn" onclick="exitReorder()">Done</button>
-  <button onclick="exportOrder()">Export order</button>
-</div>
 
 <div class="board" id="board">
   <img src="images/_ (1).jpeg" alt="">
@@ -331,7 +134,7 @@
   <img src="images/Dance party.jpeg" alt="">
   <img src="images/dress by Aleen Sabbagh (1).jpeg" alt="">
   <img src="images/dress by Aleen Sabbagh.jpeg" alt="">
-  <img src="images/From the Wed of J&J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg" alt="">
+  <img src="images/From the Wed of J&amp;J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg" alt="">
   <img src="images/Gallery _ A Grande Fete — Carrie Patterson  _ Refined Revelry Captured on Film.jpeg" alt="">
   <img src="images/Glitter Bomb Dress.jpeg" alt="">
   <img src="images/kinney + luna + winona.jpeg" alt="">
@@ -340,199 +143,33 @@
   <img src="images/Sorority formal, sorority, bestfriends, college, formal dresses.jpeg" alt="">
 </div>
 
-<div class="empty-state" id="empty">
-  <p>Drop your images folder here, or</p>
-  <label for="file-input">Choose images</label>
-  <input type="file" id="file-input" multiple accept="image/*">
-</div>
-
 <footer>2026</footer>
 
-<!-- lightbox -->
 <div class="lb" id="lb" onclick="this.classList.remove('on')">
   <img id="lb-img" src="" alt="">
 </div>
 
-<!-- export modal -->
-<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)this.classList.remove('show')">
-  <div class="modal">
-    <h3>Your image order</h3>
-    <p>Copy this and paste it inside the &lt;div class="board"&gt; in index.html to lock in your layout.</p>
-    <textarea id="export-code" readonly></textarea>
-    <div class="modal-actions">
-      <button onclick="document.getElementById('modal-overlay').classList.remove('show')">Close</button>
-      <button class="primary" onclick="copyExport()">Copy</button>
-    </div>
-  </div>
-</div>
-
 <script>
-  const board = document.getElementById('board');
-  const empty = document.getElementById('empty');
-  const toolbar = document.getElementById('toolbar');
-  const fileInput = document.getElementById('file-input');
-
-  let images = []; // { name, url }
-  let reorderMode = false;
-
-  // ── Load images via file picker ──
-  fileInput.addEventListener('change', e => {
-    handleFiles(e.target.files);
-  });
-
-  // ── Drag & drop files onto page ──
-  document.addEventListener('dragover', e => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-  });
-
-  document.addEventListener('drop', e => {
-    e.preventDefault();
-    if (e.dataTransfer.files.length) {
-      handleFiles(e.dataTransfer.files);
+  // fade in images as they load, remove broken ones
+  document.querySelectorAll('.board img').forEach((img, i) => {
+    if (img.complete && img.naturalHeight > 0) {
+      setTimeout(() => img.classList.add('show'), i * 40);
+    } else {
+      img.onload = () => setTimeout(() => img.classList.add('show'), i * 40);
+      img.onerror = () => img.remove();
     }
   });
 
-  function handleFiles(fileList) {
-    const files = [...fileList].filter(f => f.type.startsWith('image/'));
-    if (!files.length) return;
-
-    // sort alphabetically by name for consistent initial order
-    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-
-    files.forEach(file => {
-      const url = URL.createObjectURL(file);
-      images.push({ name: file.name, url });
-    });
-
-    renderBoard();
-    empty.style.display = 'none';
-  }
-
-  function renderBoard() {
-    board.innerHTML = '';
-    images.forEach((img, i) => {
-      const el = document.createElement('img');
-      el.src = img.url;
-      el.alt = img.name;
-      el.draggable = false; // we control drag ourselves
-      el.style.opacity = '0';
-      el.dataset.index = i;
-
-      el.onload = () => {
-        setTimeout(() => {
-          el.style.opacity = '1';
-          el.classList.add('loaded');
-        }, i * 30);
-      };
-
-      board.appendChild(el);
-    });
-
-    if (reorderMode) setupDrag();
-  }
-
-  // ── Lightbox (only when not reordering) ──
-  board.addEventListener('click', e => {
-    if (reorderMode) return;
+  // lightbox
+  document.getElementById('board').addEventListener('click', e => {
     if (e.target.tagName === 'IMG') {
       document.getElementById('lb-img').src = e.target.src;
       document.getElementById('lb').classList.add('on');
     }
   });
-
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      document.getElementById('lb').classList.remove('on');
-      document.getElementById('modal-overlay').classList.remove('show');
-    }
+    if (e.key === 'Escape') document.getElementById('lb').classList.remove('on');
   });
-
-  // ── Double-click to enter reorder mode ──
-  board.addEventListener('dblclick', () => {
-    if (!images.length) return;
-    reorderMode = true;
-    board.classList.add('reorder-mode');
-    toolbar.classList.add('show');
-    setupDrag();
-  });
-
-  function exitReorder() {
-    reorderMode = false;
-    board.classList.remove('reorder-mode');
-    toolbar.classList.remove('show');
-    renderBoard();
-  }
-
-  // ── Drag-to-reorder ──
-  let dragSrc = null;
-
-  function setupDrag() {
-    const imgs = board.querySelectorAll('img');
-    imgs.forEach(img => {
-      img.draggable = true;
-
-      img.addEventListener('dragstart', e => {
-        dragSrc = img;
-        img.classList.add('dragging');
-        e.dataTransfer.effectAllowed = 'move';
-      });
-
-      img.addEventListener('dragend', () => {
-        img.classList.remove('dragging');
-        board.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
-        dragSrc = null;
-      });
-
-      img.addEventListener('dragover', e => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-        if (img !== dragSrc) img.classList.add('drag-over');
-      });
-
-      img.addEventListener('dragleave', () => {
-        img.classList.remove('drag-over');
-      });
-
-      img.addEventListener('drop', e => {
-        e.preventDefault();
-        img.classList.remove('drag-over');
-        if (img === dragSrc) return;
-
-        const fromIdx = parseInt(dragSrc.dataset.index);
-        const toIdx = parseInt(img.dataset.index);
-
-        // reorder the images array
-        const [moved] = images.splice(fromIdx, 1);
-        images.splice(toIdx, 0, moved);
-
-        renderBoard();
-      });
-    });
-  }
-
-  // ── Export order ──
-  function exportOrder() {
-    const code = images
-      .map(img => `  <img src="images/${img.name}" alt="">`)
-      .join('\n');
-
-    document.getElementById('export-code').value = code;
-    document.getElementById('modal-overlay').classList.add('show');
-  }
-
-  function copyExport() {
-    const ta = document.getElementById('export-code');
-    ta.select();
-    navigator.clipboard.writeText(ta.value).then(() => {
-      const btn = document.querySelector('.modal-actions .primary');
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = 'Copy', 1500);
-    });
-  }
-
-  // ── If no images loaded, show empty state ──
-  if (!images.length) empty.style.display = 'block';
 </script>
 
 </body>
