@@ -16,7 +16,6 @@
     color: #3a3a3a;
   }
 
-  /* ── header ── */
   header {
     display: flex;
     justify-content: space-between;
@@ -55,7 +54,6 @@
     vertical-align: middle;
   }
 
-  /* ── size toggle ── */
   .size-toggle {
     display: flex;
     justify-content: center;
@@ -71,7 +69,6 @@
     color: #aaa;
     transition: color 0.2s;
     user-select: none;
-    text-decoration: none;
   }
 
   .size-toggle span:hover { color: #555; }
@@ -82,7 +79,6 @@
     text-underline-offset: 3px;
   }
 
-  /* ── grid ── */
   .grid {
     max-width: 1500px;
     margin: 0 auto;
@@ -94,7 +90,6 @@
 
   @media (max-width: 640px) { .grid { padding: 0 1rem 4rem; } }
 
-  /* S = 7 cols, M = 4 cols, L = 3 cols (like the reference) */
   .grid.size-s { grid-template-columns: repeat(7, 1fr); gap: 6px; }
   .grid.size-m { grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .grid.size-l { grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -131,7 +126,6 @@
     filter: brightness(1.05);
   }
 
-  /* ── lightbox ── */
   .lb {
     position: fixed; inset: 0; z-index: 100;
     background: rgba(248,245,240,0.95);
@@ -166,7 +160,6 @@
 
   .lb-close:hover { color: #3a3a3a; }
 
-  /* ── admin panel ── */
   .admin-toggle {
     position: fixed;
     bottom: 1.5rem;
@@ -205,6 +198,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .admin-header h3 {
@@ -260,10 +255,7 @@
   .admin-thumbs img:active { cursor: grabbing; }
   .admin-thumbs img.dragging { opacity: 0.3; }
   .admin-thumbs img.drag-over { border-color: #c9a96e; }
-
-  .admin-thumbs img.selected {
-    border-color: #d44;
-  }
+  .admin-thumbs img.selected { border-color: #d44; }
 
   .delete-hint {
     font-size: 0.65rem;
@@ -271,7 +263,6 @@
     margin-top: 0.4rem;
   }
 
-  /* ── footer ── */
   footer {
     text-align: center;
     padding: 0 2rem 3rem;
@@ -283,7 +274,6 @@
 
   #file-input { display: none; }
 
-  /* ── export modal ── */
   .modal-bg {
     position: fixed; inset: 0; z-index: 200;
     background: rgba(0,0,0,0.3);
@@ -346,85 +336,52 @@
   </nav>
 </header>
 
-<!-- S / M / L toggle -->
 <div class="size-toggle" id="size-toggle">
   <span data-size="s">S</span>
   <span data-size="m" class="active">M</span>
   <span data-size="l">L</span>
 </div>
 
-<!-- image grid -->
-<div class="grid size-m" id="grid">
-  <!-- paste inside <div class="grid"> -->
-  <img src="images/_ (1).jpeg" alt="">
-  <img src="images/_ (2) copy.jpeg" alt="">
-  <img src="images/_ (2).jpeg" alt="">
-  <img src="images/_ (3) copy.jpeg" alt="">
-  <img src="images/_ (3).jpeg" alt="">
-  <img src="images/_ (4).jpeg" alt="">
-  <img src="images/_ (5).jpeg" alt="">
-  <img src="images/_ (7).jpeg" alt="">
-  <img src="images/_ (8).jpeg" alt="">
-  <img src="images/_ (9).jpeg" alt="">
-  <img src="images/_ (10).jpeg" alt="">
-  <img src="images/_ (11).jpeg" alt="">
-  <img src="images/_ (12).jpeg" alt="">
-  <img src="images/_ (13).jpeg" alt="">
-  <img src="images/_ (14).jpeg" alt="">
-  <img src="images/_ (15).jpeg" alt="">
-  <img src="images/_ (16).jpeg" alt="">
-  <img src="images/_ (17).jpeg" alt="">
-  <img src="images/_ (18).jpeg" alt="">
-  <img src="images/_ (19).jpeg" alt="">
-  <img src="images/_ (20).jpeg" alt="">
-  <img src="images/_ (21).jpeg" alt="">
-  <img src="images/_ (22).jpeg" alt="">
-  <img src="images/_ copy.jpeg" alt="">
-  <img src="images/_.jpeg" alt="">
-  <img src="images/_ (1).jpeg" alt="">
-  <img src="images/_ (2) copy.jpeg" alt="">
-  <img src="images/_ (3).jpeg" alt="">
-  <img src="images/Gallery _ A Grande Fete — Carrie Patterson  _ Refined Revelry Captured on Film.jpeg" alt="">
-  <img src="images/_ (3) copy.jpeg" alt="">
-  <img src="images/_ (22).jpeg" alt="">
-  <img src="images/_ (4).jpeg" alt="">
-  <img src="images/_ (14).jpeg" alt="">
-  <img src="images/_ (5).jpeg" alt="">
-  <img src="images/_ (16).jpeg" alt="">
-  <img src="images/_ (7).jpeg" alt="">
-  <img src="images/_ (8).jpeg" alt="">
-  <img src="images/_ (9).jpeg" alt="">
-  <img src="images/_ (2).jpeg" alt="">
-  <img src="images/_ (10).jpeg" alt="">
-  <img src="images/_ (11).jpeg" alt="">
-  <img src="images/_ (12).jpeg" alt="">
-  <img src="images/_ (13).jpeg" alt="">
-  <img src="images/❦.jpeg" alt="">
-  <img src="images/_ copy.jpeg" alt="">
-  <img src="images/_ (17).jpeg" alt="">
-  <img src="images/_ (18).jpeg" alt="">
-  <img src="images/_ (19).jpeg" alt="">
-  <img src="images/_ (20).jpeg" alt="">
-  <img src="images/_ (21).jpeg" alt="">
-  <img src="images/_ 2.jpeg" alt="">
-  <img src="images/_.jpeg" alt="">
-  <img src="images/⋆·˚ ༘🪽⋆｡˚_༄.jpeg" alt="">
-  <img src="images/🐇.jpeg" alt="">
-  <img src="images/Sorority formal, sorority, bestfriends, college, formal dresses.jpeg" alt="">
-  <img src="images/Bridesmaid Dresses Inspo.jpeg" alt="">
-  <img src="images/Dance party.jpeg" alt="">
-  <img src="images/dress by Aleen Sabbagh (1).jpeg" alt="">
-  <img src="images/formal graduation dress instagram inspo aesthetic disposable camera.jpeg" alt="">
-  <img src="images/Prom 25’.jpeg" alt="">
-  <img src="images/From the Wed of J&amp;J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg" alt="">
-  <img src="images/Glitter Bomb Dress.jpeg" alt="">
-  <img src="images/kinney + luna + winona.jpeg" alt="">
-  <img src="images/Pink Pearl Inside Seashell, Trendy Coastal Wall Art, Preppy Beachy Room Decor, Oyster Original Art Semi Abstract Painting by Diyasanat - Etsy.jpeg" alt="">
-  <img src="images/prob dress peach.jpeg" alt="">
-  <img src="images/prom night.jpeg" alt="">
+<div class="grid size-m" id="grid"></div>
 
-<!-- also update the imageFiles array in <script> -->
-const imageFiles = [
+<footer>SASA 2026</footer>
+
+<div class="lb" id="lb">
+  <button class="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<button class="admin-toggle" id="admin-btn" title="Edit board">✎</button>
+
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-header">
+    <h3>Edit board</h3>
+    <div class="admin-actions">
+      <label class="admin-btn" for="file-input">+ Add images</label>
+      <button class="admin-btn" id="delete-selected-btn">Delete selected</button>
+      <button class="admin-btn" id="export-btn">Export HTML</button>
+      <button class="admin-btn primary" id="close-admin-btn">Done</button>
+    </div>
+  </div>
+  <div class="admin-thumbs" id="admin-thumbs"></div>
+  <div class="delete-hint">Click thumbnails to select for deletion · Drag to reorder</div>
+  <input type="file" id="file-input" multiple accept="image/*">
+</div>
+
+<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="modal-box">
+    <h3>Export image tags</h3>
+    <p>Replace your index.html with the exported version, then git add, commit, push.</p>
+    <textarea id="export-code" readonly></textarea>
+    <div class="modal-btns">
+      <button class="admin-btn" onclick="document.getElementById('modal-bg').classList.remove('show')">Close</button>
+      <button class="admin-btn primary" id="copy-btn">Copy</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const imageFiles = [
     "_ (1).jpeg",
     "_ (2) copy.jpeg",
     "_ (2).jpeg",
@@ -484,107 +441,18 @@ const imageFiles = [
     "Dance party.jpeg",
     "dress by Aleen Sabbagh (1).jpeg",
     "formal graduation dress instagram inspo aesthetic disposable camera.jpeg",
-    "Prom 25’.jpeg",
+    "Prom 25'.jpeg",
     "From the Wed of J&J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg",
     "Glitter Bomb Dress.jpeg",
     "kinney + luna + winona.jpeg",
     "Pink Pearl Inside Seashell, Trendy Coastal Wall Art, Preppy Beachy Room Decor, Oyster Original Art Semi Abstract Painting by Diyasanat - Etsy.jpeg",
     "prob dress peach.jpeg",
     "prom night.jpeg",
-];
-
-  
-</div>
-
-<footer>SASA 2026</footer>
-
-<!-- lightbox -->
-<div class="lb" id="lb">
-  <button class="lb-close">✕</button>
-  <img id="lb-img" src="" alt="">
-</div>
-
-<!-- admin toggle button -->
-<button class="admin-toggle" id="admin-btn" title="Edit board">✎</button>
-
-<!-- admin panel -->
-<div class="admin-panel" id="admin-panel">
-  <div class="admin-header">
-    <h3>Edit board</h3>
-    <div class="admin-actions">
-      <label class="admin-btn" for="file-input">+ Add images</label>
-      <button class="admin-btn" id="delete-selected-btn">Delete selected</button>
-      <button class="admin-btn" id="export-btn">Export HTML</button>
-      <button class="admin-btn primary" id="close-admin-btn">Done</button>
-    </div>
-  </div>
-  <div class="admin-thumbs" id="admin-thumbs"></div>
-  <div class="delete-hint">Click thumbnails to select for deletion · Drag to reorder</div>
-  <input type="file" id="file-input" multiple accept="image/*">
-</div>
-
-<!-- export modal -->
-<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)this.classList.remove('show')">
-  <div class="modal-box">
-    <h3>Export image tags</h3>
-    <p>Copy this and replace everything inside &lt;div class="grid"&gt; in your index.html, then push to GitHub.</p>
-    <textarea id="export-code" readonly></textarea>
-    <div class="modal-btns">
-      <button class="admin-btn" onclick="document.getElementById('modal-bg').classList.remove('show')">Close</button>
-      <button class="admin-btn primary" id="copy-btn">Copy</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  // ── IMAGE LIST ──
-  // To add images permanently, just add filenames here and drop files in images/
-  const imageFiles = [
-    "_ (1).jpeg",
-    "_ (2) copy.jpeg",
-    "_ (2).jpeg",
-    "_ (3) copy.jpeg",
-    "_ (3).jpeg",
-    "_ (4).jpeg",
-    "_ (5).jpeg",
-    "_ (7).jpeg",
-    "_ (8).jpeg",
-    "_ (9).jpeg",
-    "_ (10).jpeg",
-    "_ (11).jpeg",
-    "_ (12).jpeg",
-    "_ (13).jpeg",
-    "_ (14).jpeg",
-    "_ (15).jpeg",
-    "_ (16).jpeg",
-    "_ (17).jpeg",
-    "_ (18).jpeg",
-    "_ (19).jpeg",
-    "_ (20).jpeg",
-    "_ (21).jpeg",
-    "_ (22).jpeg",
-    "_ copy.jpeg",
-    "_.jpeg",
-    "⋆·˚ ༘🪽⋆｡˚_༄.jpeg",
-    "❦.jpeg",
-    "🐇.jpeg",
-    "Bridesmaid Dresses Inspo.jpeg",
-    "Dance party.jpeg",
-    "dress by Aleen Sabbagh (1).jpeg",
-    "dress by Aleen Sabbagh.jpeg",
-    "From the Wed of J&J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg",
-    "Gallery _ A Grande Fete — Carrie Patterson  _ Refined Revelry Captured on Film.jpeg",
-    "Glitter Bomb Dress.jpeg",
-    "kinney + luna + winona.jpeg",
-    "Pink Pearl Inside Seashell, Trendy Coastal Wall Art, Preppy Beachy Room Decor, Oyster Original Art Semi Abstract Painting by Diyasanat - Etsy.jpeg",
-    "prob dress peach.jpeg",
-    "Sorority formal, sorority, bestfriends, college, formal dresses.jpeg",
   ];
 
-  // Build image objects
   let images = imageFiles.map(name => ({
     name,
-    src: "images/" + encodeURIComponent(name).replace(/%20/g, ' '),
+    src: "images/" + name,
     blob: null,
   }));
 
@@ -592,7 +460,6 @@ const imageFiles = [
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
 
-  // ── RENDER GRID ──
   function renderGrid() {
     grid.innerHTML = '';
     images.forEach((img, i) => {
@@ -614,17 +481,16 @@ const imageFiles = [
 
   renderGrid();
 
-  // ── SIZE TOGGLE ──
+  // size toggle
   const sizeToggle = document.getElementById('size-toggle');
   sizeToggle.addEventListener('click', e => {
     if (!e.target.dataset.size) return;
-    const size = e.target.dataset.size;
     sizeToggle.querySelectorAll('span').forEach(s => s.classList.remove('active'));
     e.target.classList.add('active');
-    grid.className = 'grid size-' + size;
+    grid.className = 'grid size-' + e.target.dataset.size;
   });
 
-  // ── LIGHTBOX ──
+  // lightbox
   grid.addEventListener('click', e => {
     if (e.target.tagName === 'IMG') {
       lbImg.src = e.target.src;
@@ -638,7 +504,6 @@ const imageFiles = [
       lb.classList.remove('on');
       document.getElementById('modal-bg').classList.remove('show');
     }
-    // arrow keys in lightbox
     if (lb.classList.contains('on')) {
       const srcs = [...grid.querySelectorAll('img')].map(i => i.src);
       const cur = srcs.indexOf(lbImg.src);
@@ -647,14 +512,13 @@ const imageFiles = [
     }
   });
 
-  // ── ADMIN PANEL ──
+  // admin panel
   const adminPanel = document.getElementById('admin-panel');
   const adminThumbs = document.getElementById('admin-thumbs');
-  const adminBtn = document.getElementById('admin-btn');
   let adminOpen = false;
   let selected = new Set();
 
-  adminBtn.addEventListener('click', () => {
+  document.getElementById('admin-btn').addEventListener('click', () => {
     adminOpen = !adminOpen;
     adminPanel.classList.toggle('open', adminOpen);
     if (adminOpen) renderThumbs();
@@ -674,41 +538,26 @@ const imageFiles = [
       el.dataset.index = i;
       el.draggable = true;
 
-      // click to select/deselect
       el.addEventListener('click', () => {
-        if (selected.has(i)) {
-          selected.delete(i);
-          el.classList.remove('selected');
-        } else {
-          selected.add(i);
-          el.classList.add('selected');
-        }
+        if (selected.has(i)) { selected.delete(i); el.classList.remove('selected'); }
+        else { selected.add(i); el.classList.add('selected'); }
       });
 
-      // drag to reorder
       el.addEventListener('dragstart', e => {
         el.classList.add('dragging');
         e.dataTransfer.setData('text/plain', i);
         e.dataTransfer.effectAllowed = 'move';
       });
-
       el.addEventListener('dragend', () => el.classList.remove('dragging'));
-
-      el.addEventListener('dragover', e => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-        el.classList.add('drag-over');
-      });
-
+      el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('drag-over'); });
       el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
-
       el.addEventListener('drop', e => {
         e.preventDefault();
         el.classList.remove('drag-over');
-        const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
-        const toIdx = parseInt(el.dataset.index);
-        const [moved] = images.splice(fromIdx, 1);
-        images.splice(toIdx, 0, moved);
+        const from = parseInt(e.dataTransfer.getData('text/plain'));
+        const to = parseInt(el.dataset.index);
+        const [moved] = images.splice(from, 1);
+        images.splice(to, 0, moved);
         renderThumbs();
         renderGrid();
       });
@@ -717,7 +566,6 @@ const imageFiles = [
     });
   }
 
-  // delete selected
   document.getElementById('delete-selected-btn').addEventListener('click', () => {
     if (!selected.size) return;
     images = images.filter((_, i) => !selected.has(i));
@@ -725,33 +573,18 @@ const imageFiles = [
     renderGrid();
   });
 
-  // add images
   document.getElementById('file-input').addEventListener('change', e => {
-    const files = [...e.target.files].filter(f => f.type.startsWith('image/'));
-    files.forEach(file => {
-      const url = URL.createObjectURL(file);
-      images.push({ name: file.name, src: '', blob: url });
+    [...e.target.files].filter(f => f.type.startsWith('image/')).forEach(file => {
+      images.push({ name: file.name, src: '', blob: URL.createObjectURL(file) });
     });
     renderThumbs();
     renderGrid();
     e.target.value = '';
   });
 
-  // export
   document.getElementById('export-btn').addEventListener('click', () => {
-    const lines = images.map(img => {
-      const name = img.name.replace(/&/g, '&amp;');
-      return `  <img src="images/${name}" alt="">`;
-    });
-
-    // also generate the JS array
-    const jsArray = images.map(img => `    "${img.name.replace(/"/g, '\\"')}",`).join('\n');
-
-    const code = `<!-- paste inside <div class="grid"> -->\n` +
-      lines.join('\n') +
-      `\n\n<!-- also update the imageFiles array in <script> -->\n` +
-      `const imageFiles = [\n${jsArray}\n];`;
-
+    const jsArray = images.map(img => `    "${img.name.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}",`).join('\n');
+    const code = `const imageFiles = [\n${jsArray}\n];`;
     document.getElementById('export-code').value = code;
     document.getElementById('modal-bg').classList.add('show');
   });
