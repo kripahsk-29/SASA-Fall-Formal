@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pastels & Pearls ~ SASA 2026 Formal</title>
+<title>Pastels & Pearls ~ SASA Spring Formal 2026</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,6 +16,7 @@
     color: #3a3a3a;
   }
 
+  /* ── header ── */
   header {
     display: flex;
     justify-content: space-between;
@@ -44,9 +45,18 @@
     color: #888;
   }
 
-  nav span.active { color: #3a3a3a; }
-  nav span.active::before { content: '• '; font-size: 0.6rem; vertical-align: middle; }
+  nav a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
 
+  nav a:hover { color: #5a4a50; }
+
+  nav a.active { color: #3a3a3a; }
+  nav a.active::before { content: '• '; font-size: 0.6rem; vertical-align: middle; }
+
+  /* ── size toggle ── */
   .size-toggle {
     display: flex;
     justify-content: center;
@@ -71,6 +81,7 @@
     text-underline-offset: 3px;
   }
 
+  /* ── grid ── */
   .grid {
     max-width: 1500px;
     margin: 0 auto;
@@ -111,6 +122,7 @@
   .grid img.show { opacity: 1; transform: scale(1); }
   .grid img:hover { filter: brightness(1.05); }
 
+  /* ── lightbox ── */
   .lb {
     position: fixed; inset: 0; z-index: 100;
     background: rgba(248,245,240,0.95);
@@ -144,24 +156,133 @@
 
   .lb-close:hover { color: #3a3a3a; }
 
+  /* ── details section ── */
+  .details-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 5rem;
+    text-align: center;
+  }
+
+  .details-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: #5a4a50;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  .details-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #b09a9e;
+    margin-bottom: 2.5rem;
+  }
+
+  .details-line {
+    width: 40px;
+    height: 1px;
+    background: #c9a96e;
+    margin: 0 auto 2.5rem;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem 2rem;
+    text-align: left;
+    max-width: 440px;
+    margin: 0 auto 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+      text-align: center;
+    }
+    .details-grid .detail-label { margin-top: 1rem; }
+  }
+
+  .detail-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #b09a9e;
+    padding-top: 0.15rem;
+  }
+
+  .detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #3a3a3a;
+    line-height: 1.5;
+  }
+
+  .detail-value a {
+    color: #5a4a50;
+    text-decoration: underline;
+    text-decoration-color: #c9a96e;
+    text-underline-offset: 2px;
+  }
+
+  .details-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #5a4a50;
+    max-width: 500px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  .details-message strong {
+    font-weight: 500;
+    font-style: normal;
+    color: #3a3a3a;
+  }
+
+  .details-message .email-link {
+    font-style: normal;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── footer ── */
   footer {
     text-align: center;
-    padding: 0 2rem 3rem;
+    padding: 0 2rem 2.5rem;
     font-weight: 300;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #c0b5b8;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
   }
+
+  footer a {
+    color: #b09a9e;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: #5a4a50; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="site-title">pastels & pearls</div>
+  <div class="site-title">pastels & pearls — SASA spring formal 2026</div>
   <nav>
-    <span>mood</span>
-    <span class="active">inspiration</span>
-    <span>details</span>
+    <a href="#grid-section">mood</a>
+    <a href="#grid-section" class="active">inspiration</a>
+    <a href="#details">details</a>
   </nav>
 </header>
 
@@ -171,16 +292,55 @@
   <span data-size="l">L</span>
 </div>
 
-<div class="grid size-m" id="grid"></div>
+<div class="grid size-m" id="grid" id="grid-section"></div>
 
-<footer>SASA 2026</footer>
+<!-- details -->
+<section class="details-section" id="details">
+  <div class="details-title">You're Invited</div>
+  <div class="details-subtitle">SASA Spring Formal 2026</div>
+  <div class="details-line"></div>
 
+  <div class="details-grid">
+    <div class="detail-label">Date</div>
+    <div class="detail-value">Thursday, May 1st</div>
+
+    <div class="detail-label">Time</div>
+    <div class="detail-value">8:00 — 10:00 pm</div>
+
+    <div class="detail-label">Venue</div>
+    <div class="detail-value"><a href="https://maps.google.com/?q=Flying+V+201+E+3rd+St+Bethlehem+PA+18015" target="_blank">Flying V, 201 E 3rd St, Bethlehem, PA 18015</a></div>
+
+    <div class="detail-label">Theme</div>
+    <div class="detail-value">Pastels & Pearls</div>
+
+    <div class="detail-label">Tickets</div>
+    <div class="detail-value">$20 until April 17th · $30 thereafter</div>
+  </div>
+
+  <div class="details-line"></div>
+
+  <div class="details-message">
+    This semester wouldn't have been the same without you. We are so grateful you are part of SASA and we would love to celebrate that with you.
+    <br><br>
+    You are officially invited to <strong>SASA Spring Formal 2026</strong>. Come dressed up, ready to make memories, and prepared for a night you will not forget. We cannot wait to see you there!
+    <br><br>
+    If you have any questions, reach out to us at <a href="mailto:insasa@lehigh.edu" class="email-link">insasa@lehigh.edu</a>
+  </div>
+</section>
+
+<footer>
+  SASA 2026
+  <br>
+  made by <a href="#">poshitha</a> · powered by late nights & good vibes
+</footer>
+
+<!-- lightbox -->
 <div class="lb" id="lb">
   <button class="lb-close">✕</button>
   <img id="lb-img" src="" alt="">
 </div>
 
-<!-- images.js is auto-generated by build.sh -->
+<!-- images loaded from images.js (generated by build.sh) -->
 <script src="images.js"></script>
 
 <script>
@@ -188,17 +348,14 @@
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
 
-  // render all images from the imageFiles array (loaded from images.js)
   if (typeof imageFiles !== 'undefined') {
     imageFiles.forEach((name, i) => {
       const img = document.createElement('img');
       img.src = 'images/' + name;
       img.alt = '';
       img.loading = 'lazy';
-
       img.onload = () => setTimeout(() => img.classList.add('show'), i * 30);
       img.onerror = () => img.remove();
-
       grid.appendChild(img);
     });
   }
@@ -229,6 +386,15 @@
       if (e.key === 'ArrowRight' && cur < srcs.length - 1) lbImg.src = srcs[cur + 1];
       if (e.key === 'ArrowLeft' && cur > 0) lbImg.src = srcs[cur - 1];
     }
+  });
+
+  // smooth scroll for nav
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
   });
 </script>
 
