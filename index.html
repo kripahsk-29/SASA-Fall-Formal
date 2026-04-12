@@ -44,15 +44,8 @@
     color: #888;
   }
 
-  nav span.active {
-    color: #3a3a3a;
-  }
-
-  nav span.active::before {
-    content: '• ';
-    font-size: 0.6rem;
-    vertical-align: middle;
-  }
+  nav span.active { color: #3a3a3a; }
+  nav span.active::before { content: '• '; font-size: 0.6rem; vertical-align: middle; }
 
   .size-toggle {
     display: flex;
@@ -61,7 +54,6 @@
     padding: 3rem 0 2rem;
     font-size: 0.8rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
   }
 
   .size-toggle span {
@@ -85,7 +77,6 @@
     padding: 0 2.5rem 4rem;
     display: grid;
     gap: 8px;
-    transition: all 0.35s ease;
   }
 
   @media (max-width: 640px) { .grid { padding: 0 1rem 4rem; } }
@@ -103,7 +94,7 @@
   @media (max-width: 640px) {
     .grid.size-s { grid-template-columns: repeat(3, 1fr); }
     .grid.size-m { grid-template-columns: repeat(2, 1fr); }
-    .grid.size-l { grid-template-columns: repeat(1, 1fr); }
+    .grid.size-l { grid-template-columns: 1fr; }
   }
 
   .grid img {
@@ -117,14 +108,8 @@
     transition: opacity 0.4s ease, transform 0.4s ease, filter 0.3s ease;
   }
 
-  .grid img.show {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .grid img:hover {
-    filter: brightness(1.05);
-  }
+  .grid img.show { opacity: 1; transform: scale(1); }
+  .grid img:hover { filter: brightness(1.05); }
 
   .lb {
     position: fixed; inset: 0; z-index: 100;
@@ -155,113 +140,9 @@
     cursor: pointer;
     background: none; border: none;
     font-family: inherit;
-    transition: color 0.2s;
   }
 
   .lb-close:hover { color: #3a3a3a; }
-
-  .admin-toggle {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    z-index: 80;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: #5a4a50;
-    color: #f8f5f0;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s, background 0.2s;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  }
-
-  .admin-toggle:hover { transform: scale(1.1); background: #7a6670; }
-
-  .admin-panel {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    z-index: 90;
-    background: #fff;
-    border-top: 1px solid #e8e4de;
-    padding: 1.5rem 2.5rem;
-    transform: translateY(100%);
-    transition: transform 0.35s ease;
-    box-shadow: 0 -4px 30px rgba(0,0,0,0.06);
-  }
-
-  .admin-panel.open { transform: translateY(0); }
-
-  .admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .admin-header h3 {
-    font-weight: 400;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    color: #5a4a50;
-  }
-
-  .admin-actions {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .admin-btn {
-    font-family: inherit;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #5a4a50;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .admin-btn:hover { background: #f8f5f0; border-color: #c9a96e; }
-  .admin-btn.primary { background: #5a4a50; color: #fff; border-color: #5a4a50; }
-  .admin-btn.primary:hover { background: #7a6670; }
-
-  .admin-thumbs {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding: 0.5rem 0;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .admin-thumbs img {
-    width: 60px; height: 60px;
-    object-fit: cover;
-    border-radius: 3px;
-    cursor: grab;
-    border: 2px solid transparent;
-    transition: border-color 0.2s, opacity 0.2s;
-    flex-shrink: 0;
-  }
-
-  .admin-thumbs img:active { cursor: grabbing; }
-  .admin-thumbs img.dragging { opacity: 0.3; }
-  .admin-thumbs img.drag-over { border-color: #c9a96e; }
-  .admin-thumbs img.selected { border-color: #d44; }
-
-  .delete-hint {
-    font-size: 0.65rem;
-    color: #bbb;
-    margin-top: 0.4rem;
-  }
 
   footer {
     text-align: center;
@@ -270,58 +151,6 @@
     font-size: 0.75rem;
     color: #c0b5b8;
     letter-spacing: 0.06em;
-  }
-
-  #file-input { display: none; }
-
-  .modal-bg {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(6px);
-    display: none; align-items: center; justify-content: center;
-  }
-
-  .modal-bg.show { display: flex; }
-
-  .modal-box {
-    background: #fff;
-    border-radius: 6px;
-    padding: 2rem;
-    max-width: 600px;
-    width: 90vw;
-    max-height: 80vh;
-    overflow: auto;
-  }
-
-  .modal-box h3 {
-    font-weight: 400;
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-    color: #5a4a50;
-  }
-
-  .modal-box p {
-    font-size: 0.75rem;
-    color: #999;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
-
-  .modal-box textarea {
-    width: 100%;
-    min-height: 220px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.68rem;
-    padding: 1rem;
-    border: 1px solid #e8e4de;
-    border-radius: 4px;
-    background: #faf8f5;
-    color: #333;
-    resize: vertical;
-  }
-
-  .modal-btns {
-    display: flex; gap: 0.6rem; margin-top: 1rem; justify-content: flex-end;
   }
 </style>
 </head>
@@ -351,141 +180,33 @@
   <img id="lb-img" src="" alt="">
 </div>
 
-<button class="admin-toggle" id="admin-btn" title="Edit board">✎</button>
-
-<div class="admin-panel" id="admin-panel">
-  <div class="admin-header">
-    <h3>Edit board</h3>
-    <div class="admin-actions">
-      <label class="admin-btn" for="file-input">+ Add images</label>
-      <button class="admin-btn" id="delete-selected-btn">Delete selected</button>
-      <button class="admin-btn" id="export-btn">Export HTML</button>
-      <button class="admin-btn primary" id="close-admin-btn">Done</button>
-    </div>
-  </div>
-  <div class="admin-thumbs" id="admin-thumbs"></div>
-  <div class="delete-hint">Click thumbnails to select for deletion · Drag to reorder</div>
-  <input type="file" id="file-input" multiple accept="image/*">
-</div>
-
-<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)this.classList.remove('show')">
-  <div class="modal-box">
-    <h3>Export image tags</h3>
-    <p>Replace your index.html with the exported version, then git add, commit, push.</p>
-    <textarea id="export-code" readonly></textarea>
-    <div class="modal-btns">
-      <button class="admin-btn" onclick="document.getElementById('modal-bg').classList.remove('show')">Close</button>
-      <button class="admin-btn primary" id="copy-btn">Copy</button>
-    </div>
-  </div>
-</div>
+<!-- images.js is auto-generated by build.sh -->
+<script src="images.js"></script>
 
 <script>
-  const imageFiles = [
-    "_ (1).jpeg",
-    "_ (2) copy.jpeg",
-    "_ (2).jpeg",
-    "_ (3) copy.jpeg",
-    "_ (3).jpeg",
-    "_ (4).jpeg",
-    "_ (5).jpeg",
-    "_ (7).jpeg",
-    "_ (8).jpeg",
-    "_ (9).jpeg",
-    "_ (10).jpeg",
-    "_ (11).jpeg",
-    "_ (12).jpeg",
-    "_ (13).jpeg",
-    "_ (14).jpeg",
-    "_ (15).jpeg",
-    "_ (16).jpeg",
-    "_ (17).jpeg",
-    "_ (18).jpeg",
-    "_ (19).jpeg",
-    "_ (20).jpeg",
-    "_ (21).jpeg",
-    "_ (22).jpeg",
-    "_ copy.jpeg",
-    "_.jpeg",
-    "_ (1).jpeg",
-    "_ (2) copy.jpeg",
-    "_ (3).jpeg",
-    "Gallery _ A Grande Fete — Carrie Patterson  _ Refined Revelry Captured on Film.jpeg",
-    "_ (3) copy.jpeg",
-    "_ (22).jpeg",
-    "_ (4).jpeg",
-    "_ (14).jpeg",
-    "_ (5).jpeg",
-    "_ (16).jpeg",
-    "_ (7).jpeg",
-    "_ (8).jpeg",
-    "_ (9).jpeg",
-    "_ (2).jpeg",
-    "_ (10).jpeg",
-    "_ (11).jpeg",
-    "_ (12).jpeg",
-    "_ (13).jpeg",
-    "❦.jpeg",
-    "_ copy.jpeg",
-    "_ (17).jpeg",
-    "_ (18).jpeg",
-    "_ (19).jpeg",
-    "_ (20).jpeg",
-    "_ (21).jpeg",
-    "_ 2.jpeg",
-    "_.jpeg",
-    "⋆·˚ ༘🪽⋆｡˚_༄.jpeg",
-    "🐇.jpeg",
-    "Sorority formal, sorority, bestfriends, college, formal dresses.jpeg",
-    "Bridesmaid Dresses Inspo.jpeg",
-    "Dance party.jpeg",
-    "dress by Aleen Sabbagh (1).jpeg",
-    "formal graduation dress instagram inspo aesthetic disposable camera.jpeg",
-    "Prom 25'.jpeg",
-    "From the Wed of J&J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg",
-    "Glitter Bomb Dress.jpeg",
-    "kinney + luna + winona.jpeg",
-    "Pink Pearl Inside Seashell, Trendy Coastal Wall Art, Preppy Beachy Room Decor, Oyster Original Art Semi Abstract Painting by Diyasanat - Etsy.jpeg",
-    "prob dress peach.jpeg",
-    "prom night.jpeg",
-  ];
-
-  let images = imageFiles.map(name => ({
-    name,
-    src: "images/" + name,
-    blob: null,
-  }));
-
   const grid = document.getElementById('grid');
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
 
-  function renderGrid() {
-    grid.innerHTML = '';
-    images.forEach((img, i) => {
-      const el = document.createElement('img');
-      el.src = img.blob || img.src;
-      el.alt = '';
-      el.loading = 'lazy';
+  // render all images from the imageFiles array (loaded from images.js)
+  if (typeof imageFiles !== 'undefined') {
+    imageFiles.forEach((name, i) => {
+      const img = document.createElement('img');
+      img.src = 'images/' + name;
+      img.alt = '';
+      img.loading = 'lazy';
 
-      if (el.complete && el.naturalHeight > 0) {
-        setTimeout(() => el.classList.add('show'), i * 30);
-      } else {
-        el.onload = () => setTimeout(() => el.classList.add('show'), i * 30);
-        el.onerror = () => el.remove();
-      }
+      img.onload = () => setTimeout(() => img.classList.add('show'), i * 30);
+      img.onerror = () => img.remove();
 
-      grid.appendChild(el);
+      grid.appendChild(img);
     });
   }
 
-  renderGrid();
-
   // size toggle
-  const sizeToggle = document.getElementById('size-toggle');
-  sizeToggle.addEventListener('click', e => {
+  document.getElementById('size-toggle').addEventListener('click', e => {
     if (!e.target.dataset.size) return;
-    sizeToggle.querySelectorAll('span').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('#size-toggle span').forEach(s => s.classList.remove('active'));
     e.target.classList.add('active');
     grid.className = 'grid size-' + e.target.dataset.size;
   });
@@ -499,104 +220,15 @@
   });
 
   lb.addEventListener('click', () => lb.classList.remove('on'));
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      lb.classList.remove('on');
-      document.getElementById('modal-bg').classList.remove('show');
-    }
+    if (e.key === 'Escape') lb.classList.remove('on');
     if (lb.classList.contains('on')) {
       const srcs = [...grid.querySelectorAll('img')].map(i => i.src);
       const cur = srcs.indexOf(lbImg.src);
       if (e.key === 'ArrowRight' && cur < srcs.length - 1) lbImg.src = srcs[cur + 1];
       if (e.key === 'ArrowLeft' && cur > 0) lbImg.src = srcs[cur - 1];
     }
-  });
-
-  // admin panel
-  const adminPanel = document.getElementById('admin-panel');
-  const adminThumbs = document.getElementById('admin-thumbs');
-  let adminOpen = false;
-  let selected = new Set();
-
-  document.getElementById('admin-btn').addEventListener('click', () => {
-    adminOpen = !adminOpen;
-    adminPanel.classList.toggle('open', adminOpen);
-    if (adminOpen) renderThumbs();
-  });
-
-  document.getElementById('close-admin-btn').addEventListener('click', () => {
-    adminOpen = false;
-    adminPanel.classList.remove('open');
-  });
-
-  function renderThumbs() {
-    adminThumbs.innerHTML = '';
-    selected.clear();
-    images.forEach((img, i) => {
-      const el = document.createElement('img');
-      el.src = img.blob || img.src;
-      el.dataset.index = i;
-      el.draggable = true;
-
-      el.addEventListener('click', () => {
-        if (selected.has(i)) { selected.delete(i); el.classList.remove('selected'); }
-        else { selected.add(i); el.classList.add('selected'); }
-      });
-
-      el.addEventListener('dragstart', e => {
-        el.classList.add('dragging');
-        e.dataTransfer.setData('text/plain', i);
-        e.dataTransfer.effectAllowed = 'move';
-      });
-      el.addEventListener('dragend', () => el.classList.remove('dragging'));
-      el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('drag-over'); });
-      el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
-      el.addEventListener('drop', e => {
-        e.preventDefault();
-        el.classList.remove('drag-over');
-        const from = parseInt(e.dataTransfer.getData('text/plain'));
-        const to = parseInt(el.dataset.index);
-        const [moved] = images.splice(from, 1);
-        images.splice(to, 0, moved);
-        renderThumbs();
-        renderGrid();
-      });
-
-      adminThumbs.appendChild(el);
-    });
-  }
-
-  document.getElementById('delete-selected-btn').addEventListener('click', () => {
-    if (!selected.size) return;
-    images = images.filter((_, i) => !selected.has(i));
-    renderThumbs();
-    renderGrid();
-  });
-
-  document.getElementById('file-input').addEventListener('change', e => {
-    [...e.target.files].filter(f => f.type.startsWith('image/')).forEach(file => {
-      images.push({ name: file.name, src: '', blob: URL.createObjectURL(file) });
-    });
-    renderThumbs();
-    renderGrid();
-    e.target.value = '';
-  });
-
-  document.getElementById('export-btn').addEventListener('click', () => {
-    const jsArray = images.map(img => `    "${img.name.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}",`).join('\n');
-    const code = `const imageFiles = [\n${jsArray}\n];`;
-    document.getElementById('export-code').value = code;
-    document.getElementById('modal-bg').classList.add('show');
-  });
-
-  document.getElementById('copy-btn').addEventListener('click', () => {
-    const ta = document.getElementById('export-code');
-    ta.select();
-    navigator.clipboard.writeText(ta.value).then(() => {
-      const btn = document.getElementById('copy-btn');
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = 'Copy', 1500);
-    });
   });
 </script>
 
