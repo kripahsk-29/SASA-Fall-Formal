@@ -4,171 +4,626 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pastels & Pearls ~ SASA 2026 Formal</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #faf8f5;
-    font-family: 'Cormorant Garamond', serif;
+    background: #f8f5f0;
+    font-family: 'DM Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
+    color: #3a3a3a;
   }
 
+  /* ── header ── */
   header {
-    text-align: center;
-    padding: 4rem 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2.5rem 3rem 0;
   }
 
-  header h1 {
+  @media (max-width: 640px) {
+    header { padding: 2rem 1.5rem 0; flex-direction: column; gap: 1.5rem; }
+  }
+
+  .site-title {
     font-weight: 300;
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
-    letter-spacing: 0.12em;
-    color: #6b4f5a;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: #5a4a50;
   }
 
-  header .line {
-    width: 40px;
-    height: 1px;
-    background: #c9a96e;
-    margin: 1rem auto 0;
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: #888;
   }
 
-  .board {
-    max-width: 1400px;
+  nav span.active {
+    color: #3a3a3a;
+  }
+
+  nav span.active::before {
+    content: '• ';
+    font-size: 0.6rem;
+    vertical-align: middle;
+  }
+
+  /* ── size toggle ── */
+  .size-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 3rem 0 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .size-toggle span {
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .size-toggle span:hover { color: #555; }
+
+  .size-toggle span.active {
+    color: #3a3a3a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── grid ── */
+  .grid {
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 1rem 12px 6rem;
-    columns: 4;
-    column-gap: 10px;
+    padding: 0 2.5rem 4rem;
+    display: grid;
+    gap: 8px;
+    transition: all 0.35s ease;
   }
 
-  @media (max-width: 1000px) { .board { columns: 3; } }
-  @media (max-width: 640px)  { .board { columns: 2; column-gap: 8px; } }
+  @media (max-width: 640px) { .grid { padding: 0 1rem 4rem; } }
 
-  .board img {
+  /* S = 7 cols, M = 4 cols, L = 3 cols (like the reference) */
+  .grid.size-s { grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .grid.size-m { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .grid.size-l { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  @media (max-width: 1000px) {
+    .grid.size-s { grid-template-columns: repeat(5, 1fr); }
+    .grid.size-m { grid-template-columns: repeat(3, 1fr); }
+    .grid.size-l { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .grid.size-s { grid-template-columns: repeat(3, 1fr); }
+    .grid.size-m { grid-template-columns: repeat(2, 1fr); }
+    .grid.size-l { grid-template-columns: repeat(1, 1fr); }
+  }
+
+  .grid img {
     display: block;
     width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 3px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     cursor: pointer;
     opacity: 0;
-    transform: translateY(10px);
-    transition: filter 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
-    filter: brightness(1.01) saturate(0.95);
+    transform: scale(0.98);
+    transition: opacity 0.4s ease, transform 0.4s ease, filter 0.3s ease;
   }
 
-  .board img.show {
+  .grid img.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
   }
 
-  .board img:hover {
-    filter: brightness(1.06) saturate(1.05);
+  .grid img:hover {
+    filter: brightness(1.05);
   }
 
+  /* ── lightbox ── */
   .lb {
     position: fixed; inset: 0; z-index: 100;
-    background: rgba(30,25,27,0.88);
-    backdrop-filter: blur(16px);
+    background: rgba(248,245,240,0.95);
+    backdrop-filter: blur(20px);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
     cursor: pointer;
   }
+
   .lb.on { opacity: 1; pointer-events: auto; }
+
   .lb img {
-    max-width: 88vw; max-height: 88vh;
-    object-fit: contain; border-radius: 3px;
-    transform: scale(0.95); transition: transform 0.3s;
+    max-width: 85vw; max-height: 88vh;
+    object-fit: contain;
+    transform: scale(0.96);
+    transition: transform 0.3s;
   }
+
   .lb.on img { transform: scale(1); }
 
+  .lb-close {
+    position: absolute;
+    top: 2rem; right: 2.5rem;
+    font-size: 1.2rem;
+    color: #888;
+    cursor: pointer;
+    background: none; border: none;
+    font-family: inherit;
+    transition: color 0.2s;
+  }
+
+  .lb-close:hover { color: #3a3a3a; }
+
+  /* ── admin panel ── */
+  .admin-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 80;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #5a4a50;
+    color: #f8f5f0;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+
+  .admin-toggle:hover { transform: scale(1.1); background: #7a6670; }
+
+  .admin-panel {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    background: #fff;
+    border-top: 1px solid #e8e4de;
+    padding: 1.5rem 2.5rem;
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+    box-shadow: 0 -4px 30px rgba(0,0,0,0.06);
+  }
+
+  .admin-panel.open { transform: translateY(0); }
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .admin-header h3 {
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: #5a4a50;
+  }
+
+  .admin-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .admin-btn {
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #5a4a50;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .admin-btn:hover { background: #f8f5f0; border-color: #c9a96e; }
+  .admin-btn.primary { background: #5a4a50; color: #fff; border-color: #5a4a50; }
+  .admin-btn.primary:hover { background: #7a6670; }
+
+  .admin-thumbs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-thumbs img {
+    width: 60px; height: 60px;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: grab;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .admin-thumbs img:active { cursor: grabbing; }
+  .admin-thumbs img.dragging { opacity: 0.3; }
+  .admin-thumbs img.drag-over { border-color: #c9a96e; }
+
+  .admin-thumbs img.selected {
+    border-color: #d44;
+  }
+
+  .delete-hint {
+    font-size: 0.65rem;
+    color: #bbb;
+    margin-top: 0.4rem;
+  }
+
+  /* ── footer ── */
   footer {
     text-align: center;
-    padding: 0 2rem 4rem;
+    padding: 0 2rem 3rem;
     font-weight: 300;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: #b09a9e;
-    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    color: #c0b5b8;
+    letter-spacing: 0.06em;
+  }
+
+  #file-input { display: none; }
+
+  /* ── export modal ── */
+  .modal-bg {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center;
+  }
+
+  .modal-bg.show { display: flex; }
+
+  .modal-box {
+    background: #fff;
+    border-radius: 6px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90vw;
+    max-height: 80vh;
+    overflow: auto;
+  }
+
+  .modal-box h3 {
+    font-weight: 400;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #5a4a50;
+  }
+
+  .modal-box p {
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .modal-box textarea {
+    width: 100%;
+    min-height: 220px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    padding: 1rem;
+    border: 1px solid #e8e4de;
+    border-radius: 4px;
+    background: #faf8f5;
+    color: #333;
+    resize: vertical;
+  }
+
+  .modal-btns {
+    display: flex; gap: 0.6rem; margin-top: 1rem; justify-content: flex-end;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Pastels &amp; Pearls — SASA Formal</h1>
-  <div class="line"></div>
+  <div class="site-title">pastels & pearls</div>
+  <nav>
+    <span>mood</span>
+    <span class="active">inspiration</span>
+    <span>details</span>
+  </nav>
 </header>
 
-<div class="board" id="board">
-  <img src="images/_ (1).jpeg" alt="">
-  <img src="images/_ (2) copy.jpeg" alt="">
-  <img src="images/_ (2).jpeg" alt="">
-  <img src="images/_ (3) copy.jpeg" alt="">
-  <img src="images/_ (3).jpeg" alt="">
-  <img src="images/_ (4).jpeg" alt="">
-  <img src="images/_ (5).jpeg" alt="">
-  <img src="images/_ (7).jpeg" alt="">
-  <img src="images/_ (8).jpeg" alt="">
-  <img src="images/_ (9).jpeg" alt="">
-  <img src="images/_ (10).jpeg" alt="">
-  <img src="images/_ (11).jpeg" alt="">
-  <img src="images/_ (12).jpeg" alt="">
-  <img src="images/_ (13).jpeg" alt="">
-  <img src="images/_ (14).jpeg" alt="">
-  <img src="images/_ (15).jpeg" alt="">
-  <img src="images/_ (16).jpeg" alt="">
-  <img src="images/_ (17).jpeg" alt="">
-  <img src="images/_ (18).jpeg" alt="">
-  <img src="images/_ (19).jpeg" alt="">
-  <img src="images/_ (20).jpeg" alt="">
-  <img src="images/_ (21).jpeg" alt="">
-  <img src="images/_ (22).jpeg" alt="">
-  <img src="images/_ copy.jpeg" alt="">
-  <img src="images/_.jpeg" alt="">
-  <img src="images/⋆·˚ ༘🪽⋆｡˚_༄.jpeg" alt="">
-  <img src="images/❦.jpeg" alt="">
-  <img src="images/🐇.jpeg" alt="">
-  <img src="images/Bridesmaid Dresses Inspo.jpeg" alt="">
-  <img src="images/Dance party.jpeg" alt="">
-  <img src="images/dress by Aleen Sabbagh (1).jpeg" alt="">
-  <img src="images/dress by Aleen Sabbagh.jpeg" alt="">
-  <img src="images/From the Wed of J&amp;J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg" alt="">
-  <img src="images/Gallery _ A Grande Fete — Carrie Patterson  _ Refined Revelry Captured on Film.jpeg" alt="">
-  <img src="images/Glitter Bomb Dress.jpeg" alt="">
-  <img src="images/kinney + luna + winona.jpeg" alt="">
-  <img src="images/Pink Pearl Inside Seashell, Trendy Coastal Wall Art, Preppy Beachy Room Decor, Oyster Original Art Semi Abstract Painting by Diyasanat - Etsy.jpeg" alt="">
-  <img src="images/prob dress peach.jpeg" alt="">
-  <img src="images/Sorority formal, sorority, bestfriends, college, formal dresses.jpeg" alt="">
+<!-- S / M / L toggle -->
+<div class="size-toggle" id="size-toggle">
+  <span data-size="s">S</span>
+  <span data-size="m" class="active">M</span>
+  <span data-size="l">L</span>
 </div>
 
-<footer>2026</footer>
+<!-- image grid -->
+<div class="grid size-m" id="grid"></div>
 
-<div class="lb" id="lb" onclick="this.classList.remove('on')">
+<footer>SASA 2026</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb">
+  <button class="lb-close">✕</button>
   <img id="lb-img" src="" alt="">
 </div>
 
+<!-- admin toggle button -->
+<button class="admin-toggle" id="admin-btn" title="Edit board">✎</button>
+
+<!-- admin panel -->
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-header">
+    <h3>Edit board</h3>
+    <div class="admin-actions">
+      <label class="admin-btn" for="file-input">+ Add images</label>
+      <button class="admin-btn" id="delete-selected-btn">Delete selected</button>
+      <button class="admin-btn" id="export-btn">Export HTML</button>
+      <button class="admin-btn primary" id="close-admin-btn">Done</button>
+    </div>
+  </div>
+  <div class="admin-thumbs" id="admin-thumbs"></div>
+  <div class="delete-hint">Click thumbnails to select for deletion · Drag to reorder</div>
+  <input type="file" id="file-input" multiple accept="image/*">
+</div>
+
+<!-- export modal -->
+<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="modal-box">
+    <h3>Export image tags</h3>
+    <p>Copy this and replace everything inside &lt;div class="grid"&gt; in your index.html, then push to GitHub.</p>
+    <textarea id="export-code" readonly></textarea>
+    <div class="modal-btns">
+      <button class="admin-btn" onclick="document.getElementById('modal-bg').classList.remove('show')">Close</button>
+      <button class="admin-btn primary" id="copy-btn">Copy</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // fade in images as they load, remove broken ones
-  document.querySelectorAll('.board img').forEach((img, i) => {
-    if (img.complete && img.naturalHeight > 0) {
-      setTimeout(() => img.classList.add('show'), i * 40);
-    } else {
-      img.onload = () => setTimeout(() => img.classList.add('show'), i * 40);
-      img.onerror = () => img.remove();
+  // ── IMAGE LIST ──
+  // To add images permanently, just add filenames here and drop files in images/
+  const imageFiles = [
+    "_ (1).jpeg",
+    "_ (2) copy.jpeg",
+    "_ (2).jpeg",
+    "_ (3) copy.jpeg",
+    "_ (3).jpeg",
+    "_ (4).jpeg",
+    "_ (5).jpeg",
+    "_ (7).jpeg",
+    "_ (8).jpeg",
+    "_ (9).jpeg",
+    "_ (10).jpeg",
+    "_ (11).jpeg",
+    "_ (12).jpeg",
+    "_ (13).jpeg",
+    "_ (14).jpeg",
+    "_ (15).jpeg",
+    "_ (16).jpeg",
+    "_ (17).jpeg",
+    "_ (18).jpeg",
+    "_ (19).jpeg",
+    "_ (20).jpeg",
+    "_ (21).jpeg",
+    "_ (22).jpeg",
+    "_ copy.jpeg",
+    "_.jpeg",
+    "⋆·˚ ༘🪽⋆｡˚_༄.jpeg",
+    "❦.jpeg",
+    "🐇.jpeg",
+    "Bridesmaid Dresses Inspo.jpeg",
+    "Dance party.jpeg",
+    "dress by Aleen Sabbagh (1).jpeg",
+    "dress by Aleen Sabbagh.jpeg",
+    "From the Wed of J&J__#UnspokenNarrative #RetmagKevin__#weddingjournalism #thewed.jpeg",
+    "Gallery _ A Grande Fete — Carrie Patterson  _ Refined Revelry Captured on Film.jpeg",
+    "Glitter Bomb Dress.jpeg",
+    "kinney + luna + winona.jpeg",
+    "Pink Pearl Inside Seashell, Trendy Coastal Wall Art, Preppy Beachy Room Decor, Oyster Original Art Semi Abstract Painting by Diyasanat - Etsy.jpeg",
+    "prob dress peach.jpeg",
+    "Sorority formal, sorority, bestfriends, college, formal dresses.jpeg",
+  ];
+
+  // Build image objects
+  let images = imageFiles.map(name => ({
+    name,
+    src: "images/" + encodeURIComponent(name).replace(/%20/g, ' '),
+    blob: null,
+  }));
+
+  const grid = document.getElementById('grid');
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+
+  // ── RENDER GRID ──
+  function renderGrid() {
+    grid.innerHTML = '';
+    images.forEach((img, i) => {
+      const el = document.createElement('img');
+      el.src = img.blob || img.src;
+      el.alt = '';
+      el.loading = 'lazy';
+
+      if (el.complete && el.naturalHeight > 0) {
+        setTimeout(() => el.classList.add('show'), i * 30);
+      } else {
+        el.onload = () => setTimeout(() => el.classList.add('show'), i * 30);
+        el.onerror = () => el.remove();
+      }
+
+      grid.appendChild(el);
+    });
+  }
+
+  renderGrid();
+
+  // ── SIZE TOGGLE ──
+  const sizeToggle = document.getElementById('size-toggle');
+  sizeToggle.addEventListener('click', e => {
+    if (!e.target.dataset.size) return;
+    const size = e.target.dataset.size;
+    sizeToggle.querySelectorAll('span').forEach(s => s.classList.remove('active'));
+    e.target.classList.add('active');
+    grid.className = 'grid size-' + size;
+  });
+
+  // ── LIGHTBOX ──
+  grid.addEventListener('click', e => {
+    if (e.target.tagName === 'IMG') {
+      lbImg.src = e.target.src;
+      lb.classList.add('on');
     }
   });
 
-  // lightbox
-  document.getElementById('board').addEventListener('click', e => {
-    if (e.target.tagName === 'IMG') {
-      document.getElementById('lb-img').src = e.target.src;
-      document.getElementById('lb').classList.add('on');
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      lb.classList.remove('on');
+      document.getElementById('modal-bg').classList.remove('show');
+    }
+    // arrow keys in lightbox
+    if (lb.classList.contains('on')) {
+      const srcs = [...grid.querySelectorAll('img')].map(i => i.src);
+      const cur = srcs.indexOf(lbImg.src);
+      if (e.key === 'ArrowRight' && cur < srcs.length - 1) lbImg.src = srcs[cur + 1];
+      if (e.key === 'ArrowLeft' && cur > 0) lbImg.src = srcs[cur - 1];
     }
   });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.getElementById('lb').classList.remove('on');
+
+  // ── ADMIN PANEL ──
+  const adminPanel = document.getElementById('admin-panel');
+  const adminThumbs = document.getElementById('admin-thumbs');
+  const adminBtn = document.getElementById('admin-btn');
+  let adminOpen = false;
+  let selected = new Set();
+
+  adminBtn.addEventListener('click', () => {
+    adminOpen = !adminOpen;
+    adminPanel.classList.toggle('open', adminOpen);
+    if (adminOpen) renderThumbs();
+  });
+
+  document.getElementById('close-admin-btn').addEventListener('click', () => {
+    adminOpen = false;
+    adminPanel.classList.remove('open');
+  });
+
+  function renderThumbs() {
+    adminThumbs.innerHTML = '';
+    selected.clear();
+    images.forEach((img, i) => {
+      const el = document.createElement('img');
+      el.src = img.blob || img.src;
+      el.dataset.index = i;
+      el.draggable = true;
+
+      // click to select/deselect
+      el.addEventListener('click', () => {
+        if (selected.has(i)) {
+          selected.delete(i);
+          el.classList.remove('selected');
+        } else {
+          selected.add(i);
+          el.classList.add('selected');
+        }
+      });
+
+      // drag to reorder
+      el.addEventListener('dragstart', e => {
+        el.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', i);
+        e.dataTransfer.effectAllowed = 'move';
+      });
+
+      el.addEventListener('dragend', () => el.classList.remove('dragging'));
+
+      el.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        el.classList.add('drag-over');
+      });
+
+      el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+
+      el.addEventListener('drop', e => {
+        e.preventDefault();
+        el.classList.remove('drag-over');
+        const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
+        const toIdx = parseInt(el.dataset.index);
+        const [moved] = images.splice(fromIdx, 1);
+        images.splice(toIdx, 0, moved);
+        renderThumbs();
+        renderGrid();
+      });
+
+      adminThumbs.appendChild(el);
+    });
+  }
+
+  // delete selected
+  document.getElementById('delete-selected-btn').addEventListener('click', () => {
+    if (!selected.size) return;
+    images = images.filter((_, i) => !selected.has(i));
+    renderThumbs();
+    renderGrid();
+  });
+
+  // add images
+  document.getElementById('file-input').addEventListener('change', e => {
+    const files = [...e.target.files].filter(f => f.type.startsWith('image/'));
+    files.forEach(file => {
+      const url = URL.createObjectURL(file);
+      images.push({ name: file.name, src: '', blob: url });
+    });
+    renderThumbs();
+    renderGrid();
+    e.target.value = '';
+  });
+
+  // export
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const lines = images.map(img => {
+      const name = img.name.replace(/&/g, '&amp;');
+      return `  <img src="images/${name}" alt="">`;
+    });
+
+    // also generate the JS array
+    const jsArray = images.map(img => `    "${img.name.replace(/"/g, '\\"')}",`).join('\n');
+
+    const code = `<!-- paste inside <div class="grid"> -->\n` +
+      lines.join('\n') +
+      `\n\n<!-- also update the imageFiles array in <script> -->\n` +
+      `const imageFiles = [\n${jsArray}\n];`;
+
+    document.getElementById('export-code').value = code;
+    document.getElementById('modal-bg').classList.add('show');
+  });
+
+  document.getElementById('copy-btn').addEventListener('click', () => {
+    const ta = document.getElementById('export-code');
+    ta.select();
+    navigator.clipboard.writeText(ta.value).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
   });
 </script>
 
