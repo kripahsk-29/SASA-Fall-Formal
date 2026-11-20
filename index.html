@@ -3,310 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pastels & Pearls ~ SASA Spring Formal 2026</title>
+<title>Masquerade ~ SASA Fall Formal 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+  :root {
+    --cream: #f8f5f0;          /* original background */
+    --gold: #c9a24a;
+    --gold-line: #c9a96e;
+    --maroon: #6e121c;
+    --maroon-deep: #4a0b12;
+    --maroon-soft: rgba(110, 18, 28, 0.8);
+    --maroon-faint: rgba(110, 18, 28, 0.35);
+  }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
-    background: #f8f5f0;
-    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    font-family: 'IM Fell English', Georgia, serif;
+    color: var(--maroon);
     -webkit-font-smoothing: antialiased;
-    color: #3a3a3a;
+    min-height: 100vh;
   }
+
+  a { color: inherit; }
+  .sc { font-family: 'IM Fell English SC', Georgia, serif; }
 
   /* ── header ── */
   header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 2.5rem 3rem 0;
+    align-items: center;
+    padding: 28px 40px 0;
   }
+  .site-title {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+  }
+  nav { display: flex; gap: 26px; }
+  nav a {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+    color: var(--maroon-soft);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  nav a:hover { color: var(--maroon); border-color: var(--gold-line); }
 
   @media (max-width: 640px) {
-    header { padding: 2rem 1.5rem 0; flex-direction: column; gap: 1.5rem; }
+    header { padding: 20px 16px 0; flex-direction: column; gap: 10px; }
+    nav { gap: 20px; }
   }
 
-  .site-title {
-    font-weight: 300;
-    font-size: 0.95rem;
-    letter-spacing: 0.02em;
-    color: #5a4a50;
+  /* ── details (simple, same layout as spring) ── */
+  .details-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 20px;
+    text-align: center;
   }
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    font-size: 0.82rem;
+  .details-title {
+    font-family: 'Pinyon Script', cursive;
     font-weight: 400;
-    color: #888;
+    font-size: clamp(48px, 9vw, 64px);
+    line-height: 1.1;
   }
-
-  nav a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s;
+  .details-subtitle {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 17px;
+    letter-spacing: 0.22em;
+    color: var(--maroon-soft);
+    margin: 4px 0 30px;
   }
-
-  nav a:hover { color: #5a4a50; }
-
-  nav a.active { color: #3a3a3a; }
-  nav a.active::before { content: '• '; font-size: 0.6rem; vertical-align: middle; }
-
-  /* ── size toggle ── */
-  .size-toggle {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 3rem 0 2rem;
-    font-size: 0.8rem;
-    font-weight: 500;
+  .details-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-line);
+    margin: 0 auto 30px;
   }
-
-  .size-toggle span {
-    cursor: pointer;
-    color: #aaa;
-    transition: color 0.2s;
-    user-select: none;
+  .details-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px 30px;
+    text-align: left;
+    max-width: 460px;
+    margin: 0 auto 30px;
   }
-
-  .size-toggle span:hover { color: #555; }
-
-  .size-toggle span.active {
-    color: #3a3a3a;
+  .detail-label {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--maroon-soft);
+    padding-top: 4px;
+  }
+  .detail-value { font-size: 18px; line-height: 1.5; }
+  .detail-value a {
     text-decoration: underline;
+    text-decoration-color: var(--gold-line);
     text-underline-offset: 3px;
   }
-
-  /* ── grid ── */
-  .grid {
-    max-width: 1500px;
+  .details-message {
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--maroon-soft);
+    max-width: 500px;
     margin: 0 auto;
-    padding: 0 2.5rem 4rem;
-    display: grid;
-    gap: 8px;
+  }
+  .details-message strong { font-weight: 400; font-style: normal; color: var(--maroon); }
+  .details-message a {
+    font-style: normal;
+    text-decoration: underline;
+    text-decoration-color: var(--gold-line);
+    text-underline-offset: 3px;
+  }
+  .rsvp {
+    display: inline-block;
+    margin-top: 34px;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.3em;
+    padding: 13px 40px 12px 44px;
+    color: var(--gold-line);
+    background: var(--maroon);
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+  .rsvp:hover { background: var(--maroon-deep); }
+
+  @media (max-width: 480px) {
+    .details-grid { grid-template-columns: 1fr; gap: 2px; text-align: center; }
+    .details-grid .detail-label { margin-top: 14px; }
+    .details-message { font-size: 17px; }
   }
 
-  @media (max-width: 640px) { .grid { padding: 0 1rem 4rem; } }
-
-  .grid.size-s { grid-template-columns: repeat(7, 1fr); gap: 6px; }
-  .grid.size-m { grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .grid.size-l { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-  @media (max-width: 1000px) {
-    .grid.size-s { grid-template-columns: repeat(5, 1fr); }
-    .grid.size-m { grid-template-columns: repeat(3, 1fr); }
-    .grid.size-l { grid-template-columns: repeat(2, 1fr); }
+  /* ── vision board ── */
+  .vision {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 70px 32px 40px;
   }
+  .vision-head { text-align: center; margin-bottom: 8px; }
+  .vision-head .eyebrow {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--maroon-soft);
+  }
+  .vision-head h2 {
+    font-family: 'Pinyon Script', cursive;
+    font-weight: 400;
+    font-size: clamp(52px, 9vw, 72px);
+    line-height: 1.1;
+  }
+  .vision-head .line {
+    font-style: italic;
+    font-size: 18px;
+    color: var(--maroon-soft);
+  }
+  .vision-head .line span { color: var(--maroon); }
 
+  .size-toggle {
+    display: flex; justify-content: center; gap: 22px;
+    padding: 26px 0 30px;
+  }
+  .size-toggle button {
+    background: none; border: none; cursor: pointer;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 15px; letter-spacing: 0.16em;
+    color: var(--maroon-faint);
+    padding: 2px 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .size-toggle button:hover { color: var(--maroon-soft); }
+  .size-toggle button.active { color: var(--maroon); border-color: var(--maroon); }
+
+  /* masonry: photos keep their real shape and read left-to-right, top-down */
+  .grid { display: flex; align-items: flex-start; gap: 14px; }
+  .grid .col { flex: 1; min-width: 0; }
   @media (max-width: 640px) {
-    .grid.size-s { grid-template-columns: repeat(3, 1fr); }
-    .grid.size-m { grid-template-columns: repeat(2, 1fr); }
-    .grid.size-l { grid-template-columns: 1fr; }
+    .vision { padding: 60px 12px 30px; }
+    .grid { gap: 8px; }
   }
 
-  .grid img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    cursor: pointer;
+  .grid figure {
+    margin-bottom: 14px;
+    background: var(--maroon-deep);
+    padding: 5px;
+    box-shadow: 0 10px 24px -12px rgba(74, 11, 18, 0.55);
+    cursor: zoom-in;
     opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 0.4s ease, transform 0.4s ease, filter 0.3s ease;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
   }
-
-  .grid img.show { opacity: 1; transform: scale(1); }
-  .grid img:hover { filter: brightness(1.05); }
+  @media (max-width: 640px) { .grid figure { margin-bottom: 8px; padding: 3px; } }
+  .grid figure.show { opacity: 1; transform: none; }
+  .grid figure.show:hover { transform: translateY(-3px); box-shadow: 0 18px 34px -14px rgba(74, 11, 18, 0.7); }
+  .grid img { display: block; width: 100%; height: auto; object-fit: cover; }
 
   /* ── lightbox ── */
   .lb {
     position: fixed; inset: 0; z-index: 100;
-    background: rgba(248,245,240,0.95);
-    backdrop-filter: blur(20px);
+    background: rgba(248, 245, 240, 0.96);
+    backdrop-filter: blur(14px);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
-    cursor: pointer;
   }
-
   .lb.on { opacity: 1; pointer-events: auto; }
-
-  .lb img {
-    max-width: 85vw; max-height: 88vh;
-    object-fit: contain;
-    transform: scale(0.96);
+  .lb figure {
+    background: var(--maroon-deep);
+    padding: 8px;
+    box-shadow: 0 30px 60px -20px rgba(74, 11, 18, 0.6);
+    transform: scale(0.97);
     transition: transform 0.3s;
   }
-
-  .lb.on img { transform: scale(1); }
-
-  .lb-close {
+  .lb.on figure { transform: none; }
+  .lb img { display: block; max-width: 82vw; max-height: 82vh; object-fit: contain; }
+  .lb button {
     position: absolute;
-    top: 2rem; right: 2.5rem;
-    font-size: 1.2rem;
-    color: #888;
-    cursor: pointer;
-    background: none; border: none;
-    font-family: inherit;
+    background: none; border: none; cursor: pointer;
+    font-family: 'IM Fell English', Georgia, serif;
+    color: var(--maroon);
+    font-size: 34px;
+    padding: 10px 16px;
+    opacity: 0.75;
+    transition: opacity 0.2s;
   }
-
-  .lb-close:hover { color: #3a3a3a; }
-
-  /* ── details section ── */
-  .details-section {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 2rem 2.5rem 5rem;
-    text-align: center;
+  .lb button:hover { opacity: 1; }
+  .lb .close { top: 14px; right: 18px; font-size: 26px; }
+  .lb .prev { left: 10px; top: 50%; transform: translateY(-50%); }
+  .lb .next { right: 10px; top: 50%; transform: translateY(-50%); }
+  .lb .count {
+    position: absolute; bottom: 22px; left: 0; right: 0; text-align: center;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 14px; letter-spacing: 0.2em; color: var(--maroon-soft);
   }
-
-  .details-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    color: #5a4a50;
-    margin-bottom: 0.3rem;
-    letter-spacing: 0.04em;
-  }
-
-  .details-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #b09a9e;
-    margin-bottom: 2.5rem;
-  }
-
-  .details-line {
-    width: 40px;
-    height: 1px;
-    background: #c9a96e;
-    margin: 0 auto 2.5rem;
-  }
-
-  .details-grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.8rem 2rem;
-    text-align: left;
-    max-width: 440px;
-    margin: 0 auto 2.5rem;
-  }
-
-  @media (max-width: 480px) {
-    .details-grid {
-      grid-template-columns: 1fr;
-      gap: 0.2rem;
-      text-align: center;
-    }
-    .details-grid .detail-label { margin-top: 1rem; }
-  }
-
-  .detail-label {
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #b09a9e;
-    padding-top: 0.15rem;
-  }
-
-  .detail-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
-    color: #3a3a3a;
-    line-height: 1.5;
-  }
-
-  .detail-value a {
-    color: #5a4a50;
-    text-decoration: underline;
-    text-decoration-color: #c9a96e;
-    text-underline-offset: 2px;
-  }
-
-  .details-message {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: #5a4a50;
-    max-width: 500px;
-    margin: 0 auto;
-    font-style: italic;
-  }
-
-  .details-message strong {
-    font-weight: 500;
-    font-style: normal;
-    color: #3a3a3a;
-  }
-
-  .details-message .email-link {
-    font-style: normal;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.03em;
+  @media (max-width: 640px) {
+    .lb img { max-width: 92vw; max-height: 74vh; }
+    .lb .prev, .lb .next { top: auto; bottom: 8px; transform: none; }
   }
 
   /* ── footer ── */
   footer {
     text-align: center;
-    padding: 0 2rem 2.5rem;
-    font-weight: 300;
-    font-size: 0.7rem;
-    color: #c0b5b8;
-    letter-spacing: 0.04em;
-    line-height: 1.8;
+    padding: 30px 16px 40px;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--maroon-soft);
+    line-height: 2;
   }
-
-  footer a {
-    color: #b09a9e;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  footer a:hover { color: #5a4a50; }
+  footer img { width: 22px; height: auto; display: block; margin: 0 auto 10px; }
+  footer a { text-decoration: none; border-bottom: 1px solid var(--maroon-faint); }
+  footer a:hover { color: var(--maroon); }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="site-title">pastels & pearls — SASA spring formal 2026</div>
+  <div class="site-title">Masquerade — SASA Fall Formal 2026</div>
   <nav>
-    <a href="#grid-section">mood</a>
-    <a href="#grid-section" class="active">inspiration</a>
     <a href="#details">details</a>
+    <a href="#vision">vision</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSefIJYyTbZuba-QXazhX3daoCEon2fAMufFIMESjn9d4fFdAA/viewform?usp=header" target="_blank">rsvp</a>
   </nav>
 </header>
 
 <!-- details -->
 <section class="details-section" id="details">
   <div class="details-title">You're Invited</div>
-  <div class="details-subtitle">SASA Spring Formal 2026</div>
+  <div class="details-subtitle">SASA Fall Formal 2026</div>
   <div class="details-line"></div>
 
   <div class="details-grid">
     <div class="detail-label">Date</div>
-    <div class="detail-value">Friday, May 1st</div>
+    <div class="detail-value">Friday, December 4th</div>
 
     <div class="detail-label">Time</div>
-    <div class="detail-value">8:00 — 10:00 pm</div>
+    <div class="detail-value">8:00 — 11:00 pm</div>
 
     <div class="detail-label">Venue</div>
-    <div class="detail-value"><a href="https://maps.google.com/?q=Flying+V+201+E+3rd+St+Bethlehem+PA+18015" target="_blank">Flying V, 201 E 3rd St, Bethlehem, PA 18015</a></div>
+    <div class="detail-value"><a href="https://maps.google.com/?q=Gully+Kitchen+203+E+3rd+St+Bethlehem+PA+18015" target="_blank">Gully Kitchen, 203 E 3rd St, Bethlehem, PA 18015</a></div>
 
     <div class="detail-label">Theme</div>
-    <div class="detail-value">Pastels & Pearls</div>
+    <div class="detail-value">Masquerade · Masks provided</div>
 
     <div class="detail-label">Tickets</div>
-    <div class="detail-value">$20 until April 19th · $30 thereafter</div>
+    <div class="detail-value">$20 until December 1st · $30 after</div>
   </div>
 
   <div class="details-line"></div>
@@ -314,32 +306,40 @@
   <div class="details-message">
     This semester wouldn't have been the same without you. We are so grateful you are part of SASA and we would love to celebrate that with you.
     <br><br>
-    You are officially invited to <strong>SASA Spring Formal 2026</strong>. Come dressed up, ready to make memories, and prepared for a night you will not forget. We cannot wait to see you there!
+    You are officially invited to <strong>SASA Fall Formal 2026</strong>. Come dressed up, ready to make memories, and prepared for a night you will not forget. We cannot wait to see you there!
     <br><br>
-    If you have any questions, reach out to us at <a href="mailto:insasa@lehigh.edu" class="email-link">insasa@lehigh.edu</a>
+    If you have any questions, reach out to us at <a href="mailto:insasa@lehigh.edu">insasa@lehigh.edu</a>
   </div>
-  <br><br>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScX51xxEcRYkJAat2ZvyEuFlbjdueN9xhA0zVe0toUhhMi-eA/viewform" target="_blank" style="display:inline-block; font-family:'DM Sans',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; padding:0.9rem 2.8rem; background:#5a4a50; color:#f8f5f0; text-decoration:none; border-radius:3px;">RSVP Now</a>
+
+  <a class="rsvp" href="https://docs.google.com/forms/d/e/1FAIpQLSefIJYyTbZuba-QXazhX3daoCEon2fAMufFIMESjn9d4fFdAA/viewform?usp=header" target="_blank">RSVP Now</a>
 </section>
-<div class="size-toggle" id="size-toggle">
-  <span data-size="s">S</span>
-  <span data-size="m" class="active">M</span>
-  <span data-size="l">L</span>
-</div>
 
-<div class="grid size-m" id="grid" id="grid-section"></div>
+<!-- vision board -->
+<section class="vision" id="vision">
 
+  <div class="size-toggle" id="size-toggle">
+    <button data-size="s">S</button>
+    <button data-size="m" class="active">M</button>
+    <button data-size="l">L</button>
+  </div>
+
+  <div class="grid size-m" id="grid"></div>
+</section>
 
 <footer>
-  SASA 2026
+  <img src="art/star-bottom-maroon.png" alt="">
+  South Asian Student Association · Fall 2026
   <br>
-  made by <a href="#">poshitha</a> ·
+  made by <a href="#">kripa</a>
 </footer>
 
 <!-- lightbox -->
-<div class="lb" id="lb">
-  <button class="lb-close">✕</button>
-  <img id="lb-img" src="" alt="">
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="close" aria-label="Close">✕</button>
+  <button class="prev" aria-label="Previous photo">‹</button>
+  <figure><img id="lb-img" src="" alt=""></figure>
+  <button class="next" aria-label="Next photo">›</button>
+  <div class="count" id="lb-count"></div>
 </div>
 
 <!-- images loaded from images.js (generated by build.sh) -->
@@ -349,54 +349,128 @@
   const grid = document.getElementById('grid');
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
+  const lbCount = document.getElementById('lb-count');
+  let srcs = [];
+  let cur = 0;
 
+  // reveal photos as they scroll into view
+  const io = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+      }), { rootMargin: '0px 0px -40px 0px' })
+    : null;
+
+  // build every photo once; columns are filled in order so the first photos sit on top
+  const figs = [];
   if (typeof imageFiles !== 'undefined') {
     imageFiles.forEach((name, i) => {
+      const fig = document.createElement('figure');
       const img = document.createElement('img');
       img.src = 'images/' + name;
-      img.alt = '';
-      img.loading = 'lazy';
-      img.onload = () => setTimeout(() => img.classList.add('show'), i * 30);
-      img.onerror = () => img.remove();
-      grid.appendChild(img);
+      img.alt = 'Masquerade inspiration photo ' + (i + 1);
+      img.onerror = () => { fig.remove(); };
+      fig.dataset.i = i;
+      fig.appendChild(img);
+      figs.push(fig);
+      srcs.push(img.src);
     });
   }
 
+  const COLS = { s: [6, 4, 3], m: [4, 3, 2], l: [3, 2, 1] };
+  let size = 'm';
+  let lastCount = 0;
+
+  function colCount() {
+    const w = window.innerWidth;
+    const [big, mid, small] = COLS[size];
+    return w <= 640 ? small : w <= 1000 ? mid : big;
+  }
+
+  // next photo goes into the shortest column (by known aspect ratio),
+  // which keeps order reading left-to-right row by row
+  function layout(force) {
+    const n = colCount();
+    if (!force && n === lastCount) return;
+    lastCount = n;
+    const cols = Array.from({ length: n }, () => {
+      const c = document.createElement('div');
+      c.className = 'col';
+      return c;
+    });
+    const heights = new Array(n).fill(0);
+    figs.forEach(fig => {
+      const img = fig.firstChild;
+      const ratio = img.naturalWidth ? img.naturalHeight / img.naturalWidth : 1.3;
+      let k = 0;
+      for (let j = 1; j < n; j++) if (heights[j] < heights[k] - 0.05) k = j;
+      cols[k].appendChild(fig);
+      heights[k] += ratio + 0.05;
+    });
+    grid.replaceChildren(...cols);
+    figs.forEach(f => {
+      if (f.classList.contains('show')) return;
+      if (io) io.observe(f); else f.classList.add('show');
+    });
+  }
+
+  // stretch/trim photos slightly so every column ends on the same line
+  let ready = false;
+  function equalize() {
+    const imgs = grid.querySelectorAll('img');
+    imgs.forEach(i => { i.style.height = ''; });
+    const cols = [...grid.children];
+    if (!ready || cols.length < 2) return;
+    const hs = cols.map(c => c.getBoundingClientRect().height);
+    const target = hs.reduce((a, b) => a + b, 0) / hs.length;
+    cols.forEach((c, k) => {
+      const list = [...c.querySelectorAll('img')];
+      const total = list.reduce((a, i) => a + i.getBoundingClientRect().height, 0);
+      const diff = target - hs[k];
+      const sizes = list.map(i => i.getBoundingClientRect().height);
+      list.forEach((i, j) => { i.style.height = (sizes[j] + diff * sizes[j] / total) + 'px'; });
+    });
+  }
+
+  layout(true);
+  // once real sizes are known, balance the columns properly
+  Promise.all(figs.map(f => f.firstChild.decode().catch(() => {}))).then(() => { ready = true; layout(true); equalize(); });
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(false); equalize(); }, 120); });
+
   // size toggle
   document.getElementById('size-toggle').addEventListener('click', e => {
-    if (!e.target.dataset.size) return;
-    document.querySelectorAll('#size-toggle span').forEach(s => s.classList.remove('active'));
-    e.target.classList.add('active');
-    grid.className = 'grid size-' + e.target.dataset.size;
+    const b = e.target.closest('button');
+    if (!b) return;
+    document.querySelectorAll('#size-toggle button').forEach(s => s.classList.remove('active'));
+    b.classList.add('active');
+    size = b.dataset.size;
+    layout(true);
+    equalize();
   });
 
   // lightbox
+  function show(i) {
+    cur = (i + srcs.length) % srcs.length;
+    lbImg.src = srcs[cur];
+    lbCount.textContent = (cur + 1) + ' / ' + srcs.length;
+  }
   grid.addEventListener('click', e => {
-    if (e.target.tagName === 'IMG') {
-      lbImg.src = e.target.src;
-      lb.classList.add('on');
-    }
+    const fig = e.target.closest('figure');
+    if (!fig) return;
+    show(+fig.dataset.i);
+    lb.classList.add('on');
   });
-
-  lb.addEventListener('click', () => lb.classList.remove('on'));
+  const close = () => lb.classList.remove('on');
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  lb.querySelector('.close').addEventListener('click', close);
+  lb.querySelector('.prev').addEventListener('click', () => show(cur - 1));
+  lb.querySelector('.next').addEventListener('click', () => show(cur + 1));
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') lb.classList.remove('on');
-    if (lb.classList.contains('on')) {
-      const srcs = [...grid.querySelectorAll('img')].map(i => i.src);
-      const cur = srcs.indexOf(lbImg.src);
-      if (e.key === 'ArrowRight' && cur < srcs.length - 1) lbImg.src = srcs[cur + 1];
-      if (e.key === 'ArrowLeft' && cur > 0) lbImg.src = srcs[cur - 1];
-    }
-  });
-
-  // smooth scroll for nav
-  document.querySelectorAll('nav a').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') show(cur + 1);
+    if (e.key === 'ArrowLeft') show(cur - 1);
   });
 </script>
 

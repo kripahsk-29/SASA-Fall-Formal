@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SASA Fall Formal 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --maroon: #5a0e16;
+    --maroon-deep: #3d080e;
+    --ink: #120607;          /* the black accents */
+    --gold: #c9a24a;
+    --gold-soft: #e2c77d;
+    --white: #fbf6ee;
+    --white-dim: rgba(251, 246, 238, 0.82);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    background-image: radial-gradient(ellipse at top, #2a070b 0%, var(--ink) 70%);
+    min-height: 100vh;
+    padding: 40px 16px 24px;
+    font-family: 'IM Fell English', Georgia, serif;
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── card ── */
+  .card {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 28px 28px 34px;
+    background-color: var(--maroon);
+    /* speckled paper texture, like the save-the-date */
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 -0.22'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 50% 30%, #6b121b 0%, var(--maroon) 55%, var(--maroon-deep) 100%);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(201,162,74,0.25);
+  }
+
+  .kicker {
+    text-align: center;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    color: var(--gold-soft);
+    margin-bottom: 16px;
+  }
+
+  /* ── double-line arch ── */
+  .arch-outer {
+    border: 1.5px solid var(--gold);
+    border-radius: 1000px 1000px 0 0;
+    padding: 9px;
+  }
+  .arch-inner {
+    border: 1px solid var(--gold-soft);
+    border-radius: 1000px 1000px 0 0;
+    padding: 56px 34px 40px;
+    text-align: center;
+  }
+
+  /* ── stars ── */
+  .stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .stars img { display: block; width: 170px; height: auto; }
+
+  /* ── title block ── */
+  .org {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 22px;
+    letter-spacing: 0.42em;
+    padding-left: 0.42em;
+    color: var(--white);
+  }
+  .title {
+    font-family: 'Pinyon Script', cursive;
+    font-weight: 400;
+    font-size: clamp(58px, 13vw, 84px);
+    line-height: 1;
+    color: var(--white);
+    margin: 4px 0 2px;
+  }
+  .year {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 0.5em;
+    padding-left: 0.5em;
+    color: var(--gold-soft);
+  }
+  .theme-line {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 17px;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 6px 16px 5px;
+  }
+
+  /* ── mask row: date | mask | time ── */
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 230px) 1fr;
+    align-items: center;
+    gap: 6px;
+    margin: 18px -12px 6px;
+  }
+  .feature .centerpiece { width: 100%; height: auto; display: block; }
+  .stamp .sparkle { display: block; width: 64px; height: auto; margin: 0 auto 14px; opacity: 0.95; }
+
+  .stamp {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stamp .small {
+    font-size: 15px;
+    letter-spacing: 0.24em;
+    color: var(--gold-soft);
+  }
+  .stamp .big {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: clamp(46px, 10vw, 66px);
+    margin: 6px 0 4px;
+  }
+  .stamp .big.time { font-size: clamp(38px, 8.4vw, 54px); white-space: nowrap; }
+
+  .venue {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 17px;
+    letter-spacing: 0.12em;
+    line-height: 1.55;
+    color: var(--white);
+  }
+  .venue a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(201,162,74,0.6); }
+  .venue a:hover { color: var(--gold-soft); }
+
+  /* ── divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px auto;
+    max-width: 260px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+  .divider img { flex: none; }
+
+  /* ── letter ── */
+  .letter { text-align: left; }
+  .greeting {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 40px;
+    color: var(--gold-soft);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .letter p {
+    font-size: 17.5px;
+    line-height: 1.75;
+    color: var(--white-dim);
+    margin-bottom: 14px;
+  }
+  .letter strong { color: var(--white); font-weight: 400; font-style: italic; }
+  .letter .hl {
+    color: var(--gold-soft);
+    font-style: italic;
+  }
+  .letter a {
+    color: var(--gold-soft);
+    text-decoration: underline;
+    text-decoration-color: rgba(201,162,74,0.6);
+    text-underline-offset: 3px;
+  }
+  .letter a:hover { color: var(--white); }
+  .letter a.here { font-family: 'IM Fell English SC', Georgia, serif; letter-spacing: 0.08em; }
+
+  /* ── details ── */
+  .details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 13px 24px;
+    text-align: left;
+    padding: 24px 4px;
+    border-top: 1px solid rgba(201,162,74,0.45);
+    border-bottom: 1px solid rgba(201,162,74,0.45);
+    margin-top: 10px;
+  }
+  .details dt {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    color: var(--gold);
+    padding-top: 4px;
+  }
+  .details dd {
+    font-style: italic;
+    font-size: 19px;
+    color: var(--white);
+  }
+  .details dd a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(201,162,74,0.6);
+    text-underline-offset: 3px;
+  }
+
+  /* ── rsvp ── */
+  .rsvp-wrap { padding: 30px 0 4px; }
+  .rsvp {
+    display: inline-block;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.32em;
+    padding: 13px 34px 12px 38px;
+    color: var(--ink);
+    background: var(--gold);
+    text-decoration: none;
+    outline: 1px solid var(--gold);
+    outline-offset: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .rsvp:hover { background: var(--gold-soft); }
+
+  /* ── sign-off ── */
+  .signoff { text-align: left; margin-top: 30px; }
+  .signoff .with-love {
+    font-style: italic;
+    font-size: 18px;
+    color: var(--white-dim);
+  }
+  .signoff .exec {
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 24px;
+    letter-spacing: 0.28em;
+    color: var(--gold-soft);
+    line-height: 1.2;
+    margin-top: 8px;
+  }
+
+  .bottom-stars {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6px;
+    margin-top: 10px;
+  }
+
+  footer {
+    text-align: center;
+    font-family: 'IM Fell English SC', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: rgba(226,199,125,0.65);
+    padding: 22px 0 8px;
+  }
+
+  @media (max-width: 520px) {
+    body { padding-top: 16px; }
+    .card { padding: 20px 14px 26px; }
+    .arch-inner { padding: 44px 18px 30px; }
+    .org { font-size: 17px; }
+    .feature { margin: 14px -8px 4px; grid-template-columns: 1fr minmax(0, 150px) 1fr; }
+    .stamp .sparkle { width: 42px; margin-bottom: 8px; }
+    .stars img { width: 130px; }
+    .stamp .small { font-size: 12px; letter-spacing: 0.16em; }
+    .venue { font-size: 15px; }
+    .details { grid-template-columns: 1fr; gap: 2px; }
+    .details dt:not(:first-child) { margin-top: 12px; }
+    .letter p { font-size: 16.5px; }
+  }
+</style>
+</head>
+<body>
+
+
+<main class="card">
+  <div class="kicker">South Asian Student Association</div>
+
+  <div class="arch-outer">
+    <div class="arch-inner">
+
+      <div class="stars" aria-hidden="true"><img src="art/stars-top.png" alt=""></div>
+
+      <div class="org">SASA</div>
+      <h1 class="title">Fall Formal</h1>
+      <div class="year">2026</div>
+      <div class="theme-line">Theme : Masquerade</div>
+
+      <!-- date | mask | time -->
+      <div class="feature">
+        <div class="stamp">
+          <img class="sparkle" src="art/sparkle-left.png" alt="" aria-hidden="true">
+          <div class="small">Friday</div>
+          <div class="big">04</div>
+          <div class="small">Dec</div>
+        </div>
+
+        <img class="centerpiece" src="art/coupe.png" alt="Hand-drawn coupe glass with a garnish and orange slices">
+
+        <div class="stamp">
+          <img class="sparkle" src="art/sparkle-right.png" alt="" aria-hidden="true">
+          <div class="small">From</div>
+          <div class="big time">8–11</div>
+          <div class="small">PM</div>
+        </div>
+      </div>
+
+      <div class="venue">
+        <a href="https://maps.google.com/?q=Gully+Kitchen+203+E+3rd+St+Bethlehem+PA+18015" target="_blank">Gully Kitchen</a><br>
+        203 E 3rd St, Bethlehem, PA 18015
+      </div>
+
+      <div class="divider" aria-hidden="true">
+        <img src="art/star-bottom.png" alt="" width="16" height="17">
+      </div>
+
+      <!-- letter (same content order as the spring invite) -->
+      <div class="letter">
+        <div class="greeting">Hello,</div>
+        <p>This semester wouldn't have been the same without you. We are so grateful you are part of <span class="hl">SASA</span> and we would love to celebrate that with you.</p>
+        <p>You are officially invited to <strong>SASA Fall Formal 2026</strong>. Come dressed up, masked up, ready to make memories, and prepared for a night you won't forget. We can't wait to <strong>see you there</strong>! Peep the <strong>vision</strong> for the night <a class="here" href="index.html" target="_blank">HERE</a>! If you have any questions, reach out to us at <a href="mailto:insasa@lehigh.edu">insasa@lehigh.edu</a></p>
+      </div>
+
+      <dl class="details">
+        <dt>Date</dt>
+        <dd>Friday, December 4th</dd>
+
+        <dt>Time</dt>
+        <dd>8:00 — 11:00 pm</dd>
+
+        <dt>Venue</dt>
+        <dd>Gully Kitchen, <a href="https://maps.google.com/?q=Gully+Kitchen+203+E+3rd+St+Bethlehem+PA+18015" target="_blank">203 E 3rd St, Bethlehem, PA 18015</a></dd>
+
+        <dt>Theme</dt>
+        <dd>Masquerade · Masks provided</dd>
+
+        <dt>Tickets</dt>
+        <dd>$20 until December 1st · $30 after</dd>
+      </dl>
+
+      <div class="rsvp-wrap">
+        <a class="rsvp" href="https://docs.google.com/forms/d/e/1FAIpQLSefIJYyTbZuba-QXazhX3daoCEon2fAMufFIMESjn9d4fFdAA/viewform?usp=header" target="_blank">RSVP Now</a>
+      </div>
+
+      <div class="signoff">
+        <div class="with-love">With so much love,</div>
+        <div class="exec">SASA Exec</div>
+      </div>
+
+      <div class="bottom-stars" aria-hidden="true">
+        <img src="art/star-bottom.png" alt="" width="28" height="29">
+        <img src="art/star-bottom.png" alt="" width="28" height="29">
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>South Asian Student Association · Fall 2026</footer>
+
+</body>
+</html>
