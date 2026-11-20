@@ -308,12 +308,16 @@
   .theme-line { font-size: 15.5px; font-weight: 600; }
   .rsvp { font-size: 14px; font-weight: 600; }
   .stamp .small { font-size: 13.5px; }
-  .stamp .big.time { font-size: clamp(30px, 6.4vw, 42px); }
+  .stamp .big { font-size: 50px; }
+  .stamp .big.time { font-size: 36px; }
 
   /* mask is wide, so give the middle column more room */
-  .feature { grid-template-columns: 1fr minmax(0, 290px) 1fr; margin-top: 26px; margin-bottom: 18px; }
+  /* equal side columns so the mask sits dead center */
+  .feature { grid-template-columns: minmax(0, 1fr) minmax(0, 262px) minmax(0, 1fr); margin-top: 26px; margin-bottom: 18px; }
   @media (max-width: 520px) {
-    .feature { grid-template-columns: 1fr minmax(0, 170px) 1fr; }
+    .feature { grid-template-columns: minmax(0, 1fr) minmax(0, 118px) minmax(0, 1fr); }
+    .stamp .big { font-size: 36px; }
+    .stamp .big.time { font-size: 22px; }
     .letter p { font-size: 16px; }
   }
 </style>
