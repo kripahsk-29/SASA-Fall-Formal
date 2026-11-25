@@ -1,9 +1,3 @@
 # SASA Fall Formal 2026 — Masquerade
 
-- `index.html` — the vision page (the HERE link)
-- `invitation.html` — the full invitation as a webpage
-- `email.html` — Gmail version: open it from GitHub Pages, Cmd+A, Cmd+C, paste into a new Gmail message
-
-After adding or removing photos in `images/`, run `./build.sh`.
-
-Based on the spring 2026 invites by poshitha.
+built out the invitation for our amazing SASA Fall Formal!!! super excited for this, check it out: <img width="1200" height="1625" alt="image" src="https://github.com/user-attachments/assets/53bfef60-50e1-4270-a520-6b5fa5cb017b" />
